@@ -1,0 +1,106 @@
+body {
+    height: 100%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-image: url("spiderWeb.jpg");
+    background-repeat: no-repeat;
+}
+
+h1 {
+    color: #7D4D00;
+    padding: 10px;
+}
+
+h2 {
+    color: rgb(212, 175, 55);
+    padding: 20px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.box {
+    max-width: 40%;
+    margin: 50px auto;
+    background: #dddddd;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+    word-wrap: break-word;
+}
+
+#heading {
+    background-color: rgb(212, 175, 55);
+    text-align: center;
+}
+
+.item {
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.item:last-child {
+    border-bottom: 0;
+}
+
+input:checked+p {
+    text-decoration: line-through;
+    text-decoration-color: rgb(212, 175, 55)
+}
+
+input[type="checkbox"] {
+    margin: 20px;
+}
+
+.checkbox-checked {
+    margin: 20px;
+    text-decoration: line-through;
+    text-decoration-color: rgb(212, 175, 55)
+}
+
+p {
+    margin: 0;
+    padding: 15px;
+    font-size: 25px;
+    font-weight: 200;
+    font-style: oblique;
+    color: rgb(153, 101, 21);
+}
+
+form {
+    text-align: center;
+    margin-left: 20px;
+}
+
+button {
+    min-height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border-color: transparent;
+    background-color: rgb(212, 175, 55);
+    color: #fff;
+    font-size: 30px;
+    padding-bottom: 6px;
+    border-width: 0;
+}
+
+input[type="text"] {
+    text-align: center;
+    height: 60px;
+    top: 10px;
+    border: none;
+    background: transparent;
+    font-style: oblique;
+    font-size: 20px;
+    font-weight: 200;
+    width: 90%;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: inset 0 -3px 0 0 rgb(212, 175, 55);
+}
+
+::placeholder {
+    color: grey;
+    opacity: 1;
+}
