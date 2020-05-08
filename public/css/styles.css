@@ -23,7 +23,7 @@ h2 {
     background: #dddddd;
     border-radius: 5px;
     box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
-    word-wrap: break-word;
+    word-break: break-all;
 }
 
 #heading {
@@ -61,7 +61,7 @@ p {
 }
 
 form {
-    text-align: center;
+    text-align: auto;
     margin-left: 20px;
 }
 
