@@ -2,9 +2,11 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const ejs = require("ejs");
 const date = require(__dirname + "/date.js");
 const app = express();
 let items = [];
+let itemsChecked = [];
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
