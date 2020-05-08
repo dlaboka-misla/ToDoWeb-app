@@ -2,27 +2,18 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const ejs = require("ejs");
-const dateFormat = require("dateformat");
+const date = require(__dirname + "/date.js");
 const app = express();
 let items = [];
 
 app.set("view engine", "ejs");
-
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
-    let today = new Date();
-    let currentDay = today.getDay();
-    let day = dateFormat(today, "dddd, mmmm dS, yyyy, h:MM:ss TT");
-    if (currentDay === 6 || currentDay === 0) {
-        let anotherDay = "Weekend";
-    } else {
-        anotherDay = "Weekday";
-    }
-    res.render("list", { listTitle: day, newListItems: items });
+    let day = date();
+
+    res.render("list", { listTitle: day, kindOfDay: anotherDay, newListItems: items });
 });
 
 app.post("/", function(req, res) {
