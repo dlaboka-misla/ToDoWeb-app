@@ -13,19 +13,38 @@ app.use(express.static("public"));
 app.get("/", function(req, res) {
     let day = date();
 
-    res.render("list", { listTitle: day, kindOfDay: anotherDay, newListItems: items });
+    res.render("list", { listTitle: day, kindOfDay: anotherDay, newListItems: items, itemsChecked: itemsChecked });
 });
 
 app.post("/", function(req, res) {
     let item = req.body.newItem;
-
+    let itemOption = {
+        itm: item,
+        chk: 0
+    };
     if (item.length !== 0) {
         if (item.length <= 200) {
-            items.push(item);
+            items.push(itemOption);
         }
-        res.redirect("/");
     }
+    res.redirect("/");
 });
+
+app.post("/onmyclick", function(req, res) {
+    let itemnumber = req.body.itemnumber;
+    const index = itemsChecked.indexOf(itemnumber);
+    if (index > -1) {
+        itemsChecked.splice(index, 1);
+    }
+    res.redirect("/");
+});
+
+app.post("/onyourclick", function(req, res) {
+    let itemnumber = req.body.itemnumber;
+    itemsChecked.push(itemnumber);
+    res.redirect("/");
+});
+
 
 app.listen(3000, function(req, res) {
     console.log("Server is running on port 3000.");
