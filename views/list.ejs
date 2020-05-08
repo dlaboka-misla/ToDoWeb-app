@@ -12,22 +12,52 @@
                     </h1>
                 </div>
                 <div class="box">
-                    <%  for(let i = 0; i < newListItems.length; i++){ %>
-                        <div class="item">
-                            <input type="checkbox">
-                            <p>
-                                <%=newListItems[i]%>
-                            </p>
-                        </div>
-                        <% } %>
 
-                            <form class="item" action="/" method="post">
+                    <form class="formitem" action="/" method="post">
+                        <%  for(let i = 0; i < newListItems.length; i++){ %>
+                            <div class="item">
+                                <%  if (itemsChecked.includes('' + i)){ %>
+                                    <input type="checkbox" id="remember" onclick='onmyclick("<%=i%>")' checked>
+                                    <% }else{ %>
+                                        <input type="checkbox" id="remember" onclick='onyourclick("<%=i%>")'>
+                                        <%} %>
+                                            <p>
+                                                <%= newListItems[i].itm %>
+                                            </p>
+                            </div>
+                            <% } %>
                                 <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
                                 <button type="submit" name="button" value="<%=listTitle %>">+</button>
-
-                            </form>
+                    </form>
                 </div>
-                </body>
+                <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+                <script>
+                    function onmyclick(i) {
+                        $.ajax({
+                            url: '/onmyclick',
+                            type: 'post',
+                            data: {
+                                itemnumber: i
+                            },
+                            success: function(response) {
+                                console.log(response);
+                            }
+                        });
+                    }
 
+                    function onyourclick(i) {
+                        $.ajax({
+                            url: '/onyourclick',
+                            type: 'post',
+                            data: {
+                                itemnumber: i
+                            },
+                            success: function(response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                </script>
+                </body>
 
                 </html>

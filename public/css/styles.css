@@ -51,12 +51,6 @@ input[type="checkbox"] {
     margin: 20px;
 }
 
-.checkbox-checked {
-    margin: 20px;
-    text-decoration: line-through;
-    text-decoration-color: rgb(212, 175, 55)
-}
-
 p {
     margin: 0;
     padding: 15px;
