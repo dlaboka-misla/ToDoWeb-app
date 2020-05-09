@@ -1,63 +1,88 @@
 <%- include("header") -%>
-    <%  if (kindOfDay === "Saturday" || kindOfDay === "Sunday"){ %>
-        <h2>It's a
-            <%=kindOfDay %>! Why are you not working?</h2>
-        <%  } else{ %>
-            <h2>It's a
-                <%=kindOfDay %>! Why are you not working?</h2>
-            <% } %>
-                <div class="box" id="heading">
-                    <h1>
-                        <%= listTitle %>
-                    </h1>
-                </div>
-                <div class="box">
-
-                    <form class="formitem" action="/" method="post">
-                        <%  for(let i = 0; i < newListItems.length; i++){ %>
-                            <div class="item">
-                                <%  if (itemsChecked.includes('' + i)){ %>
-                                    <input type="checkbox" id="remember" onclick='onmyclick("<%=i%>")' checked>
-                                    <% }else{ %>
-                                        <input type="checkbox" id="remember" onclick='onyourclick("<%=i%>")'>
-                                        <%} %>
-                                            <p>
-                                                <%= newListItems[i].itm %>
-                                            </p>
-                            </div>
+    <div class="box" id="heading">
+        <h1>
+            <form>
+                <button id="backward" onclick='getPreviousDay("<%=dayOfWeek%>")'>&lt;</button>
+                <%= listTitle %>
+                    <button id="forward" onclick='getNextDay("<%=dayOfWeek%>")'>&gt;</button>
+            </form>
+        </h1>
+    </div>
+    <div class="box">
+        <form class="formitem" action="/" method="post">
+            <%  var nli = newListItems.get(dayOfWeek); %>
+                <%  if (nli != null) { %>
+                    <%  for(let i = 0; i < nli.length; i++){ %>
+                        <div class="item">
+                            <%  if (itemsChecked.includes('' + i)){ %>
+                                <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>")' checked>
+                                <% }else{ %>
+                                    <input type="checkbox" id="remember" onclick='onYourClick("<%=i%>")'>
+                                    <%} %>
+                                        <p>
+                                            <%= nli[i].itm %>
+                                        </p>
+                        </div>
+                        <% } %>
                             <% } %>
                                 <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
                                 <button type="submit" name="button" value="<%=listTitle %>">+</button>
-                    </form>
-                </div>
-                <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-                <script>
-                    function onmyclick(i) {
-                        $.ajax({
-                            url: '/onmyclick',
-                            type: 'post',
-                            data: {
-                                itemnumber: i
-                            },
-                            success: function(response) {
-                                console.log(response);
-                            }
-                        });
-                    }
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script>
+        function onMyClick(i) {
+            $.ajax({
+                url: '/onMyClick',
+                type: 'post',
+                data: {
+                    itemNumber: i
+                },
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        }
 
-                    function onyourclick(i) {
-                        $.ajax({
-                            url: '/onyourclick',
-                            type: 'post',
-                            data: {
-                                itemnumber: i
-                            },
-                            success: function(response) {
-                                console.log(response);
-                            }
-                        });
-                    }
-                </script>
-                </body>
+        function onYourClick(i) {
+            $.ajax({
+                url: '/onYourClick',
+                type: 'post',
+                data: {
+                    itemNumber: i
+                },
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        }
 
-                </html>
+        function getNextDay(dayOfWeek) {
+            $.ajax({
+                url: '/nextDay',
+                type: 'post',
+                data: {
+                    nextDay: dayOfWeek
+                },
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        };
+
+        function getPreviousDay(dayOfWeek) {
+            $.ajax({
+                url: '/previousDay',
+                type: 'post',
+                data: {
+                    previousDay: dayOfWeek
+                },
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        };
+    </script>
+    </body>
+
+    </html>

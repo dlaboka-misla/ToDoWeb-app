@@ -1,17 +1,34 @@
 //jshint esversion:6
 
-module.exports = getDate;
-
 const dateFormat = require("dateformat");
 
-function getDate() {
+module.exports.getDate = function() {
     let today = new Date();
     let currentDay = today.getDay();
-    let day = dateFormat(today, "dddd, mmmm dS, yyyy, h:MM:ss TT");
     if (currentDay === 6 || currentDay === 0) {
-        let anotherDay = "Weekend";
+        anotherDay = "Weekend";
     } else {
         anotherDay = "Weekday";
     }
-    return day;
-}
+    return dateFormat(today, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+};
+
+module.exports.getDay = function() {
+    let today = new Date();
+    let options = {
+        weekday: "long"
+    };
+    return today.toLocaleDateString("en-US", options);
+};
+
+module.exports.getNextDay = function(currentDay) {
+    if (currentDay === 'Saturday') {
+        return 'Sunday';
+    }
+    return currentDay;
+};
+
+module.exports.getPreviousDay = function(currentDay) {
+
+    return currentDay;
+};

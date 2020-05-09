@@ -8,3 +8,10 @@
 </head>
 
 <body>
+    <%  if (kindOfDay === "Saturday" || kindOfDay === "Sunday"){ %>
+        <h2>It's a
+            <%=kindOfDay %>! Why are you not working?</h2>
+        <%  } else{ %>
+            <h2>It's a
+                <%=kindOfDay %>! Why are you not working?</h2>
+            <% } %>
