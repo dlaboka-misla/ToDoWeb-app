@@ -1,0 +1,48 @@
+<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<script>
+    function onMyClick(i) {
+        $.ajax({
+            url: '/onMyClick',
+            type: 'post',
+            data: {
+                itemNumber: i
+            },
+            success: function(response) {
+                console.log(response);
+            }
+        });
+    }
+
+    function onYourClick(i) {
+        $.ajax({
+            url: '/onYourClick',
+            type: 'post',
+            data: {
+                itemNumber: i
+            },
+            success: function(response) {
+                console.log(response);
+            }
+        });
+    }
+
+    function getNextDay(dayOfWeek) {
+        $.ajax({
+            url: '/posts/' + dayOfWeek + '/next',
+            type: 'post',
+            success: function(response) {
+                console.log(response);
+            }
+        });
+    };
+
+    function getPreviousDay(dayOfWeek) {
+        $.ajax({
+            url: '/posts/' + dayOfWeek + '/previous',
+            type: 'post',
+            success: function(response) {
+                console.log(response);
+            }
+        });
+    };
+</script>

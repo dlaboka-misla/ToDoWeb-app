@@ -4,31 +4,40 @@ const dateFormat = require("dateformat");
 
 module.exports.getDate = function() {
     let today = new Date();
-    let currentDay = today.getDay();
-    if (currentDay === 6 || currentDay === 0) {
-        anotherDay = "Weekend";
-    } else {
-        anotherDay = "Weekday";
-    }
     return dateFormat(today, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 };
 
-module.exports.getDay = function() {
-    let today = new Date();
-    let options = {
-        weekday: "long"
-    };
-    return today.toLocaleDateString("en-US", options);
-};
-
-module.exports.getNextDay = function(currentDay) {
-    if (currentDay === 'Saturday') {
-        return 'Sunday';
+module.exports.getDayByType = function(currentDay, type) {
+    let result = 0;
+    if (type === "next") {
+        if (currentDay == 0 || currentDay >= 6) {
+            result = 0;
+        } else {
+            result = 1 + parseInt(currentDay);
+        }
+    } else {
+        if (currentDay == 0) {
+            result = 6;
+        } else if (currentDay == 1) {
+            result = 1;
+        } else {
+            result = parseInt(currentDay) - 1;
+        }
     }
-    return currentDay;
+    return result;
 };
 
-module.exports.getPreviousDay = function(currentDay) {
-
-    return currentDay;
+module.exports.postTitleDays = function(currentDayOfWeek, newDayOfWeek) {
+    let difference = newDayOfWeek - currentDayOfWeek;
+    if (newDayOfWeek == 0) {
+        difference = 7 - currentDayOfWeek;
+    }
+    const today = new Date();
+    const tommorrow = new Date(today);
+    tommorrow.setDate(tommorrow.getDate() + difference);
+    let diffTomm = dateFormat(tommorrow, "dddd, mmmm dS, yyyy");
+    if (currentDayOfWeek == newDayOfWeek) {
+        diffTomm = dateFormat(tommorrow, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+    }
+    return diffTomm;
 };

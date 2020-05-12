@@ -1,10 +1,11 @@
 <%- include("header") -%>
+
     <div class="box" id="heading">
         <h1>
             <form>
-                <button id="backward" onclick='getPreviousDay("<%=dayOfWeek%>")'>&lt;</button>
+                <button id="backward" onclick='getPreviousDay("<%=dayOfWeek%>")'>&#10100</button>
                 <%= listTitle %>
-                    <button id="forward" onclick='getNextDay("<%=dayOfWeek%>")'>&gt;</button>
+                    <button id="forward" onclick='getNextDay("<%=dayOfWeek%>")'>&#10101</button>
             </form>
         </h1>
     </div>
@@ -14,7 +15,7 @@
                 <%  if (nli != null) { %>
                     <%  for(let i = 0; i < nli.length; i++){ %>
                         <div class="item">
-                            <%  if (itemsChecked.includes('' + i)){ %>
+                            <%  if (itemsCheckedMap.get(dayOfWeek).includes('' + i)){ %>
                                 <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>")' checked>
                                 <% }else{ %>
                                     <input type="checkbox" id="remember" onclick='onYourClick("<%=i%>")'>
@@ -25,64 +26,13 @@
                         </div>
                         <% } %>
                             <% } %>
-                                <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-                                <button type="submit" name="button" value="<%=listTitle %>">+</button>
+
+                                <input type="text" name="newItem" placeholder="A notion, idea, or plan" autocomplete="off">
+                                <button type="submit" id="button" value="<%=listTitle %>">&#128578</button>
         </form>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-    <script>
-        function onMyClick(i) {
-            $.ajax({
-                url: '/onMyClick',
-                type: 'post',
-                data: {
-                    itemNumber: i
-                },
-                success: function(response) {
-                    console.log(response);
-                }
-            });
-        }
 
-        function onYourClick(i) {
-            $.ajax({
-                url: '/onYourClick',
-                type: 'post',
-                data: {
-                    itemNumber: i
-                },
-                success: function(response) {
-                    console.log(response);
-                }
-            });
-        }
+    <%- include("jquery") -%>
+        </body>
 
-        function getNextDay(dayOfWeek) {
-            $.ajax({
-                url: '/nextDay',
-                type: 'post',
-                data: {
-                    nextDay: dayOfWeek
-                },
-                success: function(response) {
-                    console.log(response);
-                }
-            });
-        };
-
-        function getPreviousDay(dayOfWeek) {
-            $.ajax({
-                url: '/previousDay',
-                type: 'post',
-                data: {
-                    previousDay: dayOfWeek
-                },
-                success: function(response) {
-                    console.log(response);
-                }
-            });
-        };
-    </script>
-    </body>
-
-    </html>
+        </html>
