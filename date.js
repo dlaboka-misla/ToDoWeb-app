@@ -29,12 +29,15 @@ module.exports.getDayByType = function(currentDay, type) {
 
 module.exports.postTitleDays = function(currentDayOfWeek, newDayOfWeek) {
     let difference = newDayOfWeek - currentDayOfWeek;
+    if (currentDayOfWeek == 0) {
+        difference = newDayOfWeek - currentDayOfWeek - 7;
+    }
     if (newDayOfWeek == 0) {
-        difference = 7 - currentDayOfWeek;
+        difference = 0 - currentDayOfWeek;
     }
     const today = new Date();
     const tommorrow = new Date(today);
-    tommorrow.setDate(tommorrow.getDate() + difference);
+    tomorrow = tommorrow.setDate(today.getDate() + difference);
     let diffTomm = dateFormat(tommorrow, "dddd, mmmm dS, yyyy");
     if (currentDayOfWeek == newDayOfWeek) {
         diffTomm = dateFormat(tommorrow, "dddd, mmmm dS, yyyy, h:MM:ss TT");
