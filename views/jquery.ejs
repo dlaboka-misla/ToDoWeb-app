@@ -54,7 +54,6 @@
         } else if (keycode == 39) {
             type = '/next';
         }
-        console.log('type = ' + type);
         if (type != '') {
             $.ajax({
                 url: '/posts/' + dayOfWeek + type,

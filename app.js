@@ -41,7 +41,6 @@ function reloadItems() {
 };
 
 app.get("/", function(req, res) {
-    currentDayOfWeek = new Date().getDay();
     if ((currentDayOfWeek === 0 && reload === 1) || start === 1) {
         reloadItems();
         dayOfWeek = currentDayOfWeek;

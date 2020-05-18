@@ -10,7 +10,7 @@ To test and use, assuming you've already installed docker, run these commands in
 
 docker pull dalexandra/todolist:latest
 
-docker run -p 3000:3000 -d "TZ=Europe/Amsterdam" dalexandra/todolist:latest
+docker run -p 3000:3000 -e "TZ=Europe/Amsterdam" -d dalexandra/todolist:latest
 
 for different time zones checkout https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
