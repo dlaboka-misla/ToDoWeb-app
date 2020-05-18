@@ -11,7 +11,7 @@
                 console.log(response);
             }
         });
-    }
+    };
 
     function onYourClick(i) {
         $.ajax({
@@ -24,7 +24,7 @@
                 console.log(response);
             }
         });
-    }
+    };
 
     function getNextDay(dayOfWeek) {
         $.ajax({
@@ -32,7 +32,6 @@
             type: 'post',
             success: function(response) {
                 console.log(response);
-
             }
         });
     };
@@ -45,5 +44,25 @@
                 console.log(response);
             }
         });
+    };
+
+    function getAnotherDay(dayOfWeek, event) {
+        let keycode = event.keyCode;
+        let type = '';
+        if (keycode == 37) {
+            type = '/previous';
+        } else if (keycode == 39) {
+            type = '/next';
+        }
+        console.log('type = ' + type);
+        if (type != '') {
+            $.ajax({
+                url: '/posts/' + dayOfWeek + type,
+                type: 'post',
+                success: function(response) {
+                    window.location.reload(true);
+                }
+            });
+        }
     };
 </script>

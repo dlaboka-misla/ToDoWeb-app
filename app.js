@@ -6,34 +6,17 @@ const ejs = require("ejs");
 const date = require(__dirname + "/date.js");
 const app = express();
 
-let dayOfWeek = new Date().getDay();
-let day = date.getDate();
+app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
+let day = date.getDate();
+let dayOfWeek = new Date().getDay();
 let currentDayOfWeek = new Date().getDay();
 let itemsMap = new Map();
 let itemsCheckedMap = new Map();
 let start = 1;
 let reload = 1;
-
-app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
-
-app.get("/", function(req, res) {
-    currentDayOfWeek = new Date().getDay();
-    if ((currentDayOfWeek === 0 && reload === 1) || start === 1) {
-        reloadItems();
-        dayOfWeek = currentDayOfWeek;
-    } else if (currentDayOfWeek != 0) {
-        reload = 1;
-    }
-    res.render("list", {
-        listTitle: day,
-        dayOfWeek: dayOfWeek,
-        newListItems: itemsMap,
-        itemsCheckedMap: itemsCheckedMap,
-    });
-});
 
 function reloadItems() {
     reload = 0;
@@ -56,6 +39,22 @@ function reloadItems() {
     itemsCheckedMap.set(5, []);
     itemsCheckedMap.set(6, []);
 };
+
+app.get("/", function(req, res) {
+    currentDayOfWeek = new Date().getDay();
+    if ((currentDayOfWeek === 0 && reload === 1) || start === 1) {
+        reloadItems();
+        dayOfWeek = currentDayOfWeek;
+    } else if (currentDayOfWeek != 0) {
+        reload = 1;
+    }
+    res.render("list", {
+        listTitle: day,
+        dayOfWeek: dayOfWeek,
+        newListItems: itemsMap,
+        itemsCheckedMap: itemsCheckedMap,
+    });
+});
 
 app.post("/", function(req, res) {
     let item = req.body.newItem;
