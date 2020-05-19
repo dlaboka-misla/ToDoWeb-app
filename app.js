@@ -8,29 +8,25 @@ const app = express();
 
 let dayOfWeek = new Date().getDay();
 let day = date.getDate();
-const currentDayOfWeek = new Date().getDay();
+
+let currentDayOfWeek = new Date().getDay();
 let itemsMap = new Map();
-itemsMap.set(0, []);
-itemsMap.set(1, []);
-itemsMap.set(2, []);
-itemsMap.set(3, []);
-itemsMap.set(4, []);
-itemsMap.set(5, []);
-itemsMap.set(6, []);
 let itemsCheckedMap = new Map();
-itemsCheckedMap.set(0, []);
-itemsCheckedMap.set(1, []);
-itemsCheckedMap.set(2, []);
-itemsCheckedMap.set(3, []);
-itemsCheckedMap.set(4, []);
-itemsCheckedMap.set(5, []);
-itemsCheckedMap.set(6, []);
+let start = 1;
+let reload = 1;
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
+    currentDayOfWeek = new Date().getDay();
+    if ((currentDayOfWeek === 0 && reload === 1) || start === 1) {
+        reloadItems();
+        dayOfWeek = currentDayOfWeek;
+    } else if (currentDayOfWeek != 0) {
+        reload = 1;
+    }
     res.render("list", {
         listTitle: day,
         dayOfWeek: dayOfWeek,
@@ -38,6 +34,28 @@ app.get("/", function(req, res) {
         itemsCheckedMap: itemsCheckedMap,
     });
 });
+
+function reloadItems() {
+    reload = 0;
+    start = 0;
+    day = date.getDate();
+    itemsMap = new Map();
+    itemsMap.set(0, []);
+    itemsMap.set(1, []);
+    itemsMap.set(2, []);
+    itemsMap.set(3, []);
+    itemsMap.set(4, []);
+    itemsMap.set(5, []);
+    itemsMap.set(6, []);
+    itemsCheckedMap = new Map();
+    itemsCheckedMap.set(0, []);
+    itemsCheckedMap.set(1, []);
+    itemsCheckedMap.set(2, []);
+    itemsCheckedMap.set(3, []);
+    itemsCheckedMap.set(4, []);
+    itemsCheckedMap.set(5, []);
+    itemsCheckedMap.set(6, []);
+};
 
 app.post("/", function(req, res) {
     let item = req.body.newItem;

@@ -10,16 +10,14 @@ module.exports.getDate = function() {
 module.exports.getDayByType = function(currentDay, type) {
     let result = 0;
     if (type === "next") {
-        if (currentDay == 0 || currentDay >= 6) {
-            result = 0;
+        if (currentDay >= 6) {
+            result = 6;
         } else {
             result = 1 + parseInt(currentDay);
         }
     } else {
-        if (currentDay == 0) {
-            result = 6;
-        } else if (currentDay == 1) {
-            result = 1;
+        if (currentDay <= 0) {
+            result = 0;
         } else {
             result = parseInt(currentDay) - 1;
         }
@@ -29,12 +27,6 @@ module.exports.getDayByType = function(currentDay, type) {
 
 module.exports.postTitleDays = function(currentDayOfWeek, newDayOfWeek) {
     let difference = newDayOfWeek - currentDayOfWeek;
-    if (currentDayOfWeek == 0) {
-        difference = newDayOfWeek - currentDayOfWeek - 7;
-    }
-    if (newDayOfWeek == 0) {
-        difference = 0 - currentDayOfWeek;
-    }
     const today = new Date();
     const tommorrow = new Date(today);
     tomorrow = tommorrow.setDate(today.getDate() + difference);
