@@ -1,5 +1,6 @@
 # ToDoWeb-app
 Web Application for one user. The user can make To Do List for the current week, Sunday till Saturday. 
+The page realoads each week, i.e. the tasks remain and are visible only for the current week.
 Cannot edit the task, only check/cross if completed. 
 To navigate through the days, click on the curly brackets or left-right arrow keys. 
 To enter text, click on the smiley or press enter.

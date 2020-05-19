@@ -36,3 +36,8 @@ module.exports.postTitleDays = function(currentDayOfWeek, newDayOfWeek) {
     }
     return diffTomm;
 };
+
+module.exports.getDateDiff = function(currentDate, lastAccessedDate) {
+    let diffInTime = currentDate.getTime() - lastAccessedDate.getTime();
+    return (diffInTime / (1000 * 3600 * 24));
+};

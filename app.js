@@ -15,12 +15,10 @@ let dayOfWeek = new Date().getDay();
 let currentDayOfWeek = new Date().getDay();
 let itemsMap = new Map();
 let itemsCheckedMap = new Map();
-let start = 1;
-let reload = 1;
+let lastAccessedDay = -1;
+let lastAccessedDate;
 
 function reloadItems() {
-    reload = 0;
-    start = 0;
     day = date.getDate();
     itemsMap = new Map();
     itemsMap.set(0, []);
@@ -41,12 +39,15 @@ function reloadItems() {
 };
 
 app.get("/", function(req, res) {
-    if ((currentDayOfWeek === 0 && reload === 1) || start === 1) {
+    currentDayOfWeek = new Date().getDay();
+    let currentDate = new Date();
+    if (lastAccessedDay === -1 ||
+        (lastAccessedDay > currentDayOfWeek) ||
+        (date.getDateDiff(currentDate, lastAccessedDate) >= 7)) {
         reloadItems();
-        dayOfWeek = currentDayOfWeek;
-    } else if (currentDayOfWeek != 0) {
-        reload = 1;
     }
+    lastAccessedDay = currentDayOfWeek;
+    lastAccessedDate = currentDate;
     res.render("list", {
         listTitle: day,
         dayOfWeek: dayOfWeek,
