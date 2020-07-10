@@ -1,4 +1,4 @@
-# ToDoWeb-app
+# to-do web-app
 Web Application for one user. The user can make To Do List for the current week, Sunday till Saturday. 
 The page realoads each week, i.e. the tasks remain and are visible only for the current week.
 Cannot edit the task, only check/cross if completed. 
