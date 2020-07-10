@@ -1,14 +1,19 @@
 <%- include("header") -%>
 
     <div class="box" id="heading">
-        <h1>
-            <form>
-                <button id="backward" onclick='getPreviousDay("<%=dayOfWeek%>")'>&#10100</button>
-                <%= listTitle %>
-                    <button id="forward" onclick='getNextDay("<%=dayOfWeek%>")'>&#10101</button>
-            </form>
-        </h1>
+        <form>
+            <div class="day">
+                <div id="left"><button id="backward" onclick='getPreviousDay("<%=dayOfWeek%>")'>&#10100</button></div>
+                <div id="center">
+                    <h1>
+                        <%= listTitle %>
+                    </h1>
+                </div>
+                <div id="right"><button id="forward" onclick='getNextDay("<%=dayOfWeek%>")'>&#10101</button></div>
+            </div>
+        </form>
     </div>
+    <div class="clear"></div>
     <div class="box">
         <form class="formitem" action="/" method="post">
             <%  var nli = newListItems.get(dayOfWeek); %>
@@ -28,7 +33,7 @@
                             <% } %>
 
                                 <input type="text" name="newItem" placeholder="A notion, idea, or plan" autocomplete="off" autofocus>
-                                <button type="submit" id="button" value="<%=listTitle %>">&#128578</button>
+                                <button class="button" type="submit" id="submit" value="<%=listTitle %>">&#10548;</button>
         </form>
     </div>
 

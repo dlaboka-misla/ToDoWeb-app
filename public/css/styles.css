@@ -1,42 +1,41 @@
+@media (min-width: 1025px) {
+    .box {
+        max-width: 60%;
+        margin: 40px auto;
+        border-radius: 5px;
+        word-break: break-all;
+    }
+}
+
+@media (min-width: 200px) and (max-width: 1024px) {
+    .box {
+        max-width: 80%;
+        margin: auto;
+        border-radius: 5px;
+        word-break: break-all;
+    }
+}
+
 body {
     height: 100%;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    background-image: url('whitePencil.jpg');
+    font-family: monospace;
 }
 
 h1 {
     color: #3f3d3d;
-    padding: 0;
-    margin-right: 14px;
-}
-
-h2 {
-    color: rgba(0, 0, 0, 0.3);
-    padding: 10px;
-    text-align: center;
-    font-size: 50px;
-}
-
-.box {
-    max-width: 42%;
-    margin: 40px auto;
-    background: transparent;
-    border-radius: 5px;
-    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.3);
-    word-break: break-all;
+    margin-left: 14px;
 }
 
 #heading {
     margin-top: 0;
-    background-color: transparent;
     text-align: center;
 }
 
 .item {
-    min-height: 70px;
+    min-height: 60px;
     display: flex;
-    align-items: center;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 2px;
+    margin: 30px;
 }
 
 .item:last-child {
@@ -49,39 +48,27 @@ input:checked+p {
 }
 
 input[type="checkbox"] {
-    margin: 20px;
+    margin: 10px;
 }
 
 p {
-    margin: 0;
-    padding-bottom: 5px;
-    font-size: 25px;
-    font-weight: 200;
-    font-style: oblique;
-    color: #f0f0f0;
+    margin: 4px;
+    font-size: 20px;
 }
 
-form {
+.formitem {
     text-align: auto;
-    margin-left: 20px;
-}
-
-button {
-    min-height: 62px;
-    width: 62px;
-    border-radius: 50%;
-    border-color: transparent;
-    background-color: transparent;
-    color: #f0f0f0;
-    font-size: 30px;
-    padding-bottom: 6px;
-    border-width: 0;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 #forward,
 #backward {
     background-color: transparent;
     color: #3f3d3d;
+    font-size: 50px;
+    padding: 1px;
+    border-width: 0;
 }
 
 input[type="text"] {
@@ -89,19 +76,49 @@ input[type="text"] {
     height: 60px;
     top: 10px;
     border: none;
-    background: transparent;
-    font-style: oblique;
     font-size: 20px;
     width: 90%;
-    color: #f0f0f0;
+    font-family: monospace;
 }
 
 input[type="text"]:focus {
     outline: none;
-    box-shadow: inset 0 -3px 0 0 #888888;
 }
 
-::placeholder {
+ ::placeholder {
     color: grey;
     opacity: 1;
+}
+
+.button {
+    min-height: 40px;
+    width: 50px;
+    background-color: transparent;
+    font-size: 30px;
+    border-width: 0;
+}
+
+#submit {
+    float: right;
+    font-size: 50px;
+}
+
+.clear {
+    clear: both;
+    margin-bottom: 20px;
+}
+
+#left {
+    float: left;
+    width: 20%;
+}
+
+#center {
+    float: left;
+    width: 60%;
+}
+
+#right {
+    float: right;
+    width: 20%;
 }
