@@ -2,8 +2,8 @@
 <script>
     function onMyClick(i) {
         $.ajax({
-            url: '/onMyClick',
-            type: 'post',
+            url: "/onMyClick",
+            type: "post",
             data: {
                 itemNumber: i
             },
@@ -15,8 +15,8 @@
 
     function onYourClick(i) {
         $.ajax({
-            url: '/onYourClick',
-            type: 'post',
+            url: "/onYourClick",
+            type: "post",
             data: {
                 itemNumber: i
             },
@@ -28,8 +28,8 @@
 
     function getNextDay(dayOfWeek) {
         $.ajax({
-            url: '/posts/' + dayOfWeek + '/next',
-            type: 'post',
+            url: "/posts/" + dayOfWeek + "/next",
+            type: "post",
             success: function(response) {
                 console.log(response);
             }
@@ -38,8 +38,8 @@
 
     function getPreviousDay(dayOfWeek) {
         $.ajax({
-            url: '/posts/' + dayOfWeek + '/previous',
-            type: 'post',
+            url: "/posts/" + dayOfWeek + "/previous",
+            type: "post",
             success: function(response) {
                 console.log(response);
             }
@@ -48,16 +48,16 @@
 
     function getAnotherDay(dayOfWeek, event) {
         let keycode = event.keyCode;
-        let type = '';
+        let type = "";
         if (keycode == 37) {
-            type = '/previous';
+            type = "/previous";
         } else if (keycode == 39) {
-            type = '/next';
+            type = "/next";
         }
-        if (type != '') {
+        if (type != "") {
             $.ajax({
-                url: '/posts/' + dayOfWeek + type,
-                type: 'post',
+                url: "/posts/" + dayOfWeek + type,
+                type: "post",
                 success: function(response) {
                     window.location.reload(true);
                 }
