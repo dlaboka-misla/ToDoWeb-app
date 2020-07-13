@@ -3,7 +3,6 @@ a {
     text-decoration: underline;
 }
 
-html,
 .body {
     align-items: center;
     display: -ms-flexbox;
@@ -15,7 +14,11 @@ html,
 
 body {
     font-family: monospace, serif;
-    height: 100%;
+}
+
+.center-div {
+    margin: 0 auto;
+    width: 100%;
 }
 
 .bd-placeholder-img {
@@ -27,21 +30,11 @@ body {
     user-select: none;
 }
 
-@media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-}
-
 .form-signin {
     margin: auto;
     max-width: 330px;
     padding: 15px;
     width: 100%;
-}
-
-.form-signin .checkbox {
-    font-weight: 400;
 }
 
 .form-signin .form-control {
@@ -73,6 +66,13 @@ body {
     top: 5px;
 }
 
+.usrname {
+    position: fixed;
+    right: 180px;
+    top: 14px;
+    font-size: x-large;
+}
+
 @media (min-width: 1025px) {
     .box {
         max-width: 60%;
@@ -89,11 +89,21 @@ body {
         border-radius: 5px;
         word-break: break-all;
     }
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
 }
 
 h1 {
     color: #3f3d3d;
-    margin-left: 14px;
+    margin: 20px 0 0 0;
+    font-size: 31px;
+}
+
+p {
+    margin: 3px;
+    font-size: 20px;
+    max-width: 90%;
 }
 
 #heading {
@@ -105,7 +115,7 @@ h1 {
     min-height: 60px;
     display: flex;
     padding: 2px;
-    margin: 30px;
+    margin-left: 40px;
 }
 
 .item:last-child {
@@ -118,12 +128,12 @@ input:checked+p {
 }
 
 input[type="checkbox"] {
-    margin: 10px;
+    margin: 12px;
 }
 
-p {
-    margin: 4px;
-    font-size: 20px;
+.message {
+    font-size: 15px;
+    margin-top: 15px;
 }
 
 .formitem {
@@ -147,7 +157,8 @@ input[type="text"] {
     top: 10px;
     border: none;
     font-size: 20px;
-    width: 90%;
+    width: 85%;
+    margin-top: 10px;
     font-family: monospace;
 }
 
@@ -162,6 +173,7 @@ input[type="text"]:focus {
 
 .button {
     min-height: 40px;
+    margin-right: 40px;
     width: 50px;
     background-color: transparent;
     font-size: 30px;
@@ -178,17 +190,23 @@ input[type="text"]:focus {
     margin-bottom: 20px;
 }
 
-#left {
+.left {
     float: left;
     width: 20%;
+    padding-left: 50px;
 }
 
-#center {
+.center {
     float: left;
     width: 60%;
 }
 
-#right {
+.right {
     float: right;
     width: 20%;
+    padding-right: 50px;
+}
+
+.d-right {
+    float: right;
 }

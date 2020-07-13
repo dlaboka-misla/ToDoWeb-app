@@ -65,7 +65,7 @@ function reloadItems() {
 };
 
 app.get("/", checkAuthenticated, (req, res) => {
-  res.render("index.ejs")
+  res.redirect("/index")
 })
 
 app.get("/index", checkAuthenticated, function(req, res) {
@@ -79,6 +79,7 @@ app.get("/index", checkAuthenticated, function(req, res) {
     lastAccessedDay = currentDayOfWeek;
     lastAccessedDate = currentDate;
     res.render("index.ejs", {
+        name: req.user.name,
         listTitle: day,
         dayOfWeek: dayOfWeek,
         newListItems: itemsMap,
@@ -138,19 +139,25 @@ app.get("/register", checkNotAuthenticated, (req, res) => {
 })
 
 app.post("/register", checkNotAuthenticated, async (req, res) => {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    users.push({
-      id: Date.now().toString(),
-      name: req.body.name,
-      email: req.body.email,
-      password: hashedPassword
-    })
-    res.redirect("/login")
-  } catch {
-    res.redirect("/register")
+  if(date.isValidPassword(req.body.password, req.body.name)) {
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10)
+      users.push({
+        id: Date.now().toString(),
+        name: req.body.name,
+        email: req.body.email,
+        password: hashedPassword
+      })
+      res.redirect("/login")
+    } catch {
+      res.redirect("/register")
+    }
+    console.log(users)
+  } else {
+    res.render("register.ejs", {
+      error: 'The password must be less than 8 characters, without spaces and to not contain the username.'
+    });
   }
-  console.log(users)
 })
 
 app.delete("/logout", (req, res) => {

@@ -1,23 +1,25 @@
 <%- include("header") -%>
 
     <body>
-
         <form class="body" action="/logout?_method=DELETE" method="post">
-            <label class="logout">
-     <button type="submit" class="btn btn-dark btn-lg">Log Out</button>
-    </label>
+            <div class="usrname">
+                <%= name %>
+            </div>
+            <div class="logout">
+                <button type="submit" class="btn btn-dark btn-lg">Log Out</button>
+            </div>
         </form>
 
         <div class="box" id="heading">
             <form>
-                <div class="day">
-                    <div id="left"><button id="backward" onclick='getPreviousDay("<%=dayOfWeek%>")'>&#10100</button></div>
-                    <div id="center">
+                <div>
+                    <div class="left"><button id="backward" onclick='getPreviousDay("<%=dayOfWeek%>")'>&#10100</button></div>
+                    <div class="center">
                         <h1>
                             <%= listTitle %>
                         </h1>
                     </div>
-                    <div id="right"><button id="forward" onclick='getNextDay("<%=dayOfWeek%>")'>&#10101</button></div>
+                    <div class="right"><button id="forward" onclick='getNextDay("<%=dayOfWeek%>")'>&#10101</button></div>
                 </div>
             </form>
         </div>

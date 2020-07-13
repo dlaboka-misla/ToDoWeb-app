@@ -4,18 +4,17 @@
         <form autocomplete="off" action="/register" method="post" class="form-signin">
             <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Register</h1>
-            <label for="inputText" class="sr-only">Username</label>
-            <input type="text" name="name" id="name" class="form-control" placeholder="Username" required autofocus>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
-            <div class="checkbox mb-3">
-
-            </div>
-            <button class="btn btn-lg btn-dark btn-block" type="submit">Register</button>
-            <p class="mt-5 mb-3 text-muted"></p>
-            <p class="message">Already registered?<br> <a href="/login">Log in to your Profile Page</a></p>
+            <% if (typeof error !== 'undefined' && error) { %>
+                <%= error %>
+                    <% } %>
+                        <label for="inputText" class="sr-only">Username</label>
+                        <input type="username" name="name" id="name" class="form-control" placeholder="Username" required autofocus>
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+                        <label for="inputPassword" class="sr-only">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required autofocus>
+                        <button class="btn btn-lg btn-dark btn-block" type="submit">Register</button>
+                        <p class="message">Already registered?<br> <a href="/login">Log in to your Profile Page</a></p>
         </form>
     </body>
 

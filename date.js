@@ -41,3 +41,17 @@ module.exports.getDateDiff = function(currentDate, lastAccessedDate) {
     let diffInTime = currentDate.getTime() - lastAccessedDate.getTime();
     return (diffInTime / (1000 * 3600 * 24));
 };
+
+
+module.exports.isValidPassword = function(password, username) {
+  if (password.length < 8) {
+    return false
+  }
+  if (password.indexOf(' ') !== -1) {
+    return false
+  }
+  if (password.indexOf(username) !== -1) {
+    return false
+  }
+  return true
+}

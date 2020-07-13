@@ -26,3 +26,4 @@ function initialize (passport, getUserByName, getUserById) {
 }
 
 module.exports = initialize
+
