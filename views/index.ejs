@@ -32,12 +32,18 @@
                             <div class="item">
                                 <%  if (itemsCheckedMap.get(dayOfWeek).includes('' + i)){ %>
                                     <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>")' checked>
+                                    <p name="notdisplay">
+                                        <%= nli[i].itm %>
+                                    </p>
                                     <% }else{ %>
                                         <input type="checkbox" id="remember" onclick='onYourClick("<%=i%>")'>
+                                        <p name="display">
+                                            <%= nli[i].itm %>
+                                        </p>
+                                        <input onchange='editInput(" <%=i%>", this.value)' name="edit" type="text" value="<%= nli[i].itm %>" style="display: none">
                                         <%} %>
-                                            <p>
-                                                <%= nli[i].itm %>
-                                            </p>
+
+
                             </div>
                             <% } %>
                                 <% } %>

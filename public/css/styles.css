@@ -3,22 +3,17 @@ a {
     text-decoration: underline;
 }
 
+body {
+    font-family: monospace, serif;
+}
+
 .body {
     align-items: center;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
-    padding-bottom: 40px;
-    padding-top: 40px;
-}
-
-body {
-    font-family: monospace, serif;
-}
-
-.center-div {
-    margin: 0 auto;
-    width: 100%;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .bd-placeholder-img {
@@ -28,6 +23,79 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.button {
+    min-height: 40px;
+    margin-right: 40px;
+    width: 50px;
+    background-color: transparent;
+    font-size: 30px;
+    border-width: 0;
+}
+
+.center {
+    float: left;
+    width: 60%;
+}
+
+.clear {
+    clear: both;
+    margin-bottom: 20px;
+}
+
+.d-right {
+    float: right;
+}
+
+.item {
+    min-height: 60px;
+    display: flex;
+    padding: 2px;
+    margin-left: 40px;
+}
+
+.item:last-child {
+    border-bottom: 0;
+}
+
+input:checked+p {
+    text-decoration: line-through;
+    text-decoration-color: #888888
+}
+
+input[type="checkbox"] {
+    margin: 12px;
+}
+
+input[type="text"] {
+    text-align: center;
+    height: 60px;
+    top: 10px;
+    border: none;
+    font-size: 20px;
+    width: 85%;
+    margin-top: 10px;
+    font-family: monospace;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+.formitem {
+    text-align: auto;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+#forward,
+#backward {
+    background-color: transparent;
+    color: #3f3d3d;
+    font-size: 50px;
+    padding: 1px;
+    border-width: 0;
 }
 
 .form-signin {
@@ -60,134 +128,15 @@ body {
     margin-bottom: 10px;
 }
 
-.logout {
-    position: fixed;
-    right: 20px;
-    top: 5px;
-}
-
-.usrname {
-    position: fixed;
-    right: 180px;
-    top: 14px;
-    font-size: x-large;
-}
-
-@media (min-width: 1025px) {
-    .box {
-        max-width: 60%;
-        margin: 40px auto;
-        border-radius: 5px;
-        word-break: break-all;
-    }
-}
-
-@media (min-width: 200px) and (max-width: 1024px) {
-    .box {
-        max-width: 80%;
-        margin: auto;
-        border-radius: 5px;
-        word-break: break-all;
-    }
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-}
-
 h1 {
     color: #3f3d3d;
     margin: 20px 0 0 0;
     font-size: 31px;
 }
 
-p {
-    margin: 3px;
-    font-size: 20px;
-    max-width: 90%;
-}
-
 #heading {
     margin-top: 0;
     text-align: center;
-}
-
-.item {
-    min-height: 60px;
-    display: flex;
-    padding: 2px;
-    margin-left: 40px;
-}
-
-.item:last-child {
-    border-bottom: 0;
-}
-
-input:checked+p {
-    text-decoration: line-through;
-    text-decoration-color: #888888
-}
-
-input[type="checkbox"] {
-    margin: 12px;
-}
-
-.message {
-    font-size: 15px;
-    margin-top: 15px;
-}
-
-.formitem {
-    text-align: auto;
-    margin-left: 100px;
-    margin-right: 100px;
-}
-
-#forward,
-#backward {
-    background-color: transparent;
-    color: #3f3d3d;
-    font-size: 50px;
-    padding: 1px;
-    border-width: 0;
-}
-
-input[type="text"] {
-    text-align: center;
-    height: 60px;
-    top: 10px;
-    border: none;
-    font-size: 20px;
-    width: 85%;
-    margin-top: 10px;
-    font-family: monospace;
-}
-
-input[type="text"]:focus {
-    outline: none;
-}
-
-::placeholder {
-    color: grey;
-    opacity: 1;
-}
-
-.button {
-    min-height: 40px;
-    margin-right: 40px;
-    width: 50px;
-    background-color: transparent;
-    font-size: 30px;
-    border-width: 0;
-}
-
-#submit {
-    float: right;
-    font-size: 50px;
-}
-
-.clear {
-    clear: both;
-    margin-bottom: 20px;
 }
 
 .left {
@@ -196,9 +145,47 @@ input[type="text"]:focus {
     padding-left: 50px;
 }
 
-.center {
-    float: left;
-    width: 60%;
+.logout {
+    position: fixed;
+    right: 20px;
+    top: 5px;
+}
+
+@media (min-width: 1025px) {
+    .box {
+        max-width: 60%;
+        margin: 40px auto;
+        border-radius: 5px;
+        word-wrap: break-word;
+    }
+}
+
+@media (min-width: 200px) and (max-width: 1024px) {
+    .box {
+        max-width: 80%;
+        margin: auto;
+        border-radius: 5px;
+        word-wrap: break-word;
+    }
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.message {
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+p {
+    margin: 3px;
+    font-size: 20px;
+    max-width: 90%;
+}
+
+::placeholder {
+    color: grey;
+    opacity: 1;
 }
 
 .right {
@@ -207,6 +194,14 @@ input[type="text"]:focus {
     padding-right: 50px;
 }
 
-.d-right {
+#submit {
     float: right;
+    font-size: 50px;
+}
+
+.usrname {
+    position: fixed;
+    right: 180px;
+    top: 14px;
+    font-size: x-large;
 }

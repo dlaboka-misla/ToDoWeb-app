@@ -1,5 +1,30 @@
 <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script>
+    $(document).ready(function() {
+        $('p[name=display]').click(function() {
+            $(this).hide();
+            $('input[name=edit]', $(this).closest('div')).show();
+        })
+    });
+
+    function editInput(index, value) {
+        if (value) {
+            $.ajax({
+                url: "/editInput",
+                type: "post",
+                data: {
+                    itemNumber: index,
+                    itemText: value
+                },
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        } else {
+            window.alert('Please insert text.')
+        }
+    };
+
     function onMyClick(i) {
         $.ajax({
             url: "/onMyClick",
@@ -9,6 +34,7 @@
             },
             success: function(response) {
                 console.log(response);
+                window.location.reload(true);
             }
         });
     };
@@ -22,6 +48,7 @@
             },
             success: function(response) {
                 console.log(response);
+                window.location.reload(true);
             }
         });
     };

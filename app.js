@@ -116,6 +116,14 @@ app.post("/onYourClick", function(req, res) {
     res.redirect("/index");
 });
 
+app.post("/editInput", function(req, res) {
+    const itemNumber = req.body.itemNumber;
+    const itemText = req.body.itemText;
+    const index = Number(itemNumber);
+    itemsMap.get(dayOfWeek)[index].itm = itemText;
+    res.redirect("/index");
+});
+
 app.post("/posts/:day/:type", function(req, res) {
     let currentDay = req.params.day;
     let type = req.params.type;
