@@ -38,17 +38,15 @@
                                     <% }else{ %>
                                         <input type="checkbox" id="remember" onclick='onYourClick("<%=i%>")'>
                                         <p name="display">
-                                            <%= nli[i].itm %>
+                                            <%= nli[i].itm %><img class="delete-icon" onclick='deleteItem("<%=i%>")' style="display: none " src="images/delete-icon.svg " height="20 " width="20 " />
                                         </p>
-                                        <input onchange='editInput(" <%=i%>", this.value)' name="edit" type="text" value="<%= nli[i].itm %>" style="display: none">
+                                        <input class="editText" onchange='editInput(" <%=i%>", this.value)' name="edit" type="text" value="<%= nli[i].itm %>" style="display: none" autocomplete="off">
                                         <%} %>
-
-
                             </div>
                             <% } %>
                                 <% } %>
 
-                                    <input type="text" name="newItem" placeholder="A notion, idea, or plan" autocomplete="off" autofocus>
+                                    <input class="inputText" type="text" name="newItem" placeholder="A notion, idea, or plan" autocomplete="off" autofocus>
                                     <button class="button" type="submit" id="submit" value="<%=listTitle %>">&#10548;</button>
             </form>
         </div>

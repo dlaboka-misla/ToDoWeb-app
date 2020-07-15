@@ -5,7 +5,26 @@
             $(this).hide();
             $('input[name=edit]', $(this).closest('div')).show();
         })
+        $('p[name=display]').mouseover(function() {
+            $('img', $(this).closest('p')).show();
+        })
+        $('p[name=display]').mouseleave(function() {
+            $('img', $(this).closest('p')).hide();
+        })
     });
+
+    function deleteItem(index) {
+        $.ajax({
+            url: "/deleteItem",
+            type: "post",
+            data: {
+                itemNumber: index
+            },
+            success: function(response) {
+                window.location.reload(true);
+            }
+        });
+    }
 
     function editInput(index, value) {
         if (value) {
@@ -16,9 +35,7 @@
                     itemNumber: index,
                     itemText: value
                 },
-                success: function(response) {
-                    console.log(response);
-                }
+                success: function(response) {}
             });
         } else {
             window.alert('Please insert text.')
@@ -33,7 +50,6 @@
                 itemNumber: i
             },
             success: function(response) {
-                console.log(response);
                 window.location.reload(true);
             }
         });
@@ -47,7 +63,6 @@
                 itemNumber: i
             },
             success: function(response) {
-                console.log(response);
                 window.location.reload(true);
             }
         });

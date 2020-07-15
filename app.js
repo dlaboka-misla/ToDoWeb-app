@@ -124,6 +124,13 @@ app.post("/editInput", function(req, res) {
     res.redirect("/index");
 });
 
+app.post("/deleteItem", function(req, res) {
+    const itemNumber = req.body.itemNumber;
+    const index = Number(itemNumber);
+    itemsMap.get(dayOfWeek).splice(index, 1);
+    res.redirect("/index");
+});
+
 app.post("/posts/:day/:type", function(req, res) {
     let currentDay = req.params.day;
     let type = req.params.type;

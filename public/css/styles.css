@@ -48,39 +48,12 @@ body {
     float: right;
 }
 
-.item {
-    min-height: 60px;
-    display: flex;
-    padding: 2px;
-    margin-left: 40px;
-}
-
-.item:last-child {
-    border-bottom: 0;
-}
-
-input:checked+p {
-    text-decoration: line-through;
-    text-decoration-color: #888888
-}
-
-input[type="checkbox"] {
-    margin: 12px;
-}
-
-input[type="text"] {
-    text-align: center;
-    height: 60px;
-    top: 10px;
-    border: none;
+.editText {
+    margin: 0 0 20px 1px;
     font-size: 20px;
+    border: none;
     width: 85%;
-    margin-top: 10px;
     font-family: monospace;
-}
-
-input[type="text"]:focus {
-    outline: none;
 }
 
 .formitem {
@@ -137,6 +110,46 @@ h1 {
 #heading {
     margin-top: 0;
     text-align: center;
+}
+
+.item {
+    min-height: 60px;
+    display: flex;
+    padding: 2px;
+    margin-left: 40px;
+}
+
+.item:last-child {
+    border-bottom: 0;
+}
+
+input:checked+p {
+    text-decoration: line-through;
+    text-decoration-color: #888888
+}
+
+input[type="checkbox"] {
+    margin: 12px;
+}
+
+.inputText {
+    text-align: center;
+    height: 60px;
+    top: 10px;
+    border: none;
+    font-size: 20px;
+    width: 85%;
+    margin-top: 10px;
+    font-family: monospace;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+.delete-icon {
+    margin-left: 20px;
+    margin-bottom: 1px;
 }
 
 .left {
