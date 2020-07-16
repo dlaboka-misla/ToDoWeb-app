@@ -154,7 +154,15 @@ app.get("/register", checkNotAuthenticated, (req, res) => {
 })
 
 app.post("/register", checkNotAuthenticated, async (req, res) => {
-  if(date.isValidPassword(req.body.password, req.body.name)) {
+  if(!date.isValidPassword(req.body.password, req.body.name)) {
+    res.render("register.ejs", {
+      error: 'The password must be less than 8 characters, without spaces and to not contain the username.'
+    })
+  } else if (!date.isValidEmail(req.body.email)) {
+      res.render("register.ejs", {
+      error: 'The email is invalid. Please try again.'
+    })
+  } else {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10)
       users.push({
@@ -167,11 +175,6 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
     } catch {
       res.redirect("/register")
     }
-    console.log(users)
-  } else {
-    res.render("register.ejs", {
-      error: 'The password must be less than 8 characters, without spaces and to not contain the username.'
-    });
   }
 })
 

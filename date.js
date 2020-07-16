@@ -55,3 +55,12 @@ module.exports.isValidPassword = function(password, username) {
   }
   return true
 }
+
+module.exports.isValidEmail = function (email) 
+{
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+  {
+    return (true)
+  }
+    return (false)
+}
