@@ -1,18 +1,23 @@
-# to-do web-app
-Responsive Web Application for one user. The user can make to-do List for the current week, Sunday till Saturday. 
-The page realoads each week, i.e. the tasks remain and are visible only for the current week.
-Cannot edit the task, only check/cross if completed. 
+# to-do web-app develop branch
+Responsive Web Application for one user.
+ 
+The user can:
+
+ **Register with a username, email and password**. 
+note: For user authentication, i use [passport dependency](http://www.passportjs.org/docs/) when registering, i check for valid email and valid password. the users-password is encrypted (using bcyrpt) and express-session requires a secret key, therefore not deployable for testing on docker or heroku atm. 
+
+**Login** to their profile.
+
+Make to-do List for the current week, Sunday till Saturday. The dates follow the current time.
+The page reloads each week, i.e. the tasks remain and are visible only for the current week.
+
+**Edit** the task with a click on the paragraph. To input edited text, click on the arrow or press enter.
+
+**Delete** the task by one click on the x image.
+
+**if checked/crossed can not delete or edit the task.**
+
 To navigate through the days, click on the curly brackets or left-right arrow keys. 
 To enter text, click on the arrow or press enter.
 
-Written in JavaScript using node.js on server side together with several dependencies like express, body-parser, dateformat and ejs template.
-
-To test and use, assuming you've already installed docker, run these commands in the console:
-
-docker pull dalexandra/todolist:latest
-
-docker run -p 3000:3000 -e "TZ=Europe/Amsterdam" -d dalexandra/todolist:latest
-
-for different time zones checkout https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
-open browser and type: localhost:3000
+Written in JavaScript using node.js on server side together with several dependencies.
