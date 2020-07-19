@@ -1,12 +1,15 @@
 <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script>
     $(document).ready(function() {
+        /* the function adds onclick event to a paragraph with name display
+        and hides the paragraph. On its place shows an input text field by which the user
+        can edit the value he previously inserted */
         $('p[name=display]').click(function() {
             $(this).closest('div').hide();
             $('input[name=edit]', $(this).closest('span')).show();
         })
     });
-
+    // an ajax request to the server to delete an item at position index
     function deleteItem(index) {
         $.ajax({
             url: "/deleteItem",
@@ -19,7 +22,7 @@
             }
         });
     }
-
+    // an ajax request to the server to edit an item at position index and to put new value
     function editInput(index, value) {
         if (value) {
             $.ajax({
@@ -35,10 +38,10 @@
             window.alert('Please insert text.')
         }
     };
-
-    function onMyClick(i) {
+    // an ajax request to the server to uncheck item if its checked
+    function uncheckItem(i) {
         $.ajax({
-            url: "/onMyClick",
+            url: "/uncheckItem",
             type: "post",
             data: {
                 itemNumber: i
@@ -48,10 +51,10 @@
             }
         });
     };
-
-    function onYourClick(i) {
+    // an ajax request to the server to check item if its unchecked
+    function checkItem(i) {
         $.ajax({
-            url: "/onYourClick",
+            url: "/checkItem",
             type: "post",
             data: {
                 itemNumber: i
@@ -61,7 +64,7 @@
             }
         });
     };
-
+    // this function is called when clicked on the right curly bracket
     function getNextDay(dayOfWeek) {
         $.ajax({
             url: "/posts/" + dayOfWeek + "/next",
@@ -71,7 +74,7 @@
             }
         });
     };
-
+    // is called when clicked on the left curly bracket
     function getPreviousDay(dayOfWeek) {
         $.ajax({
             url: "/posts/" + dayOfWeek + "/previous",
@@ -81,7 +84,7 @@
             }
         });
     };
-
+    // is called when pressed on the right or left arrow key of the keyboard
     function getAnotherDay(dayOfWeek, event) {
         let keycode = event.keyCode;
         let type = "";

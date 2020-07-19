@@ -26,31 +26,40 @@
         <div class="clear"></div>
         <div class="box">
             <form class="formitem" action="/index" method="post">
+                <!--newListItems is a list to-do items for the displayed day of the week -->
                 <%  var nli = newListItems.get(dayOfWeek); %>
                     <%  if (nli != null) { %>
+                        <!-- iterate over the newListItems for the displayed day of the week-->
                         <%  for(let i = 0; i < nli.length; i++){ %>
                             <span class="item">
+                                <!-- check if for the displayed day of the week, the to-do item is already done (checked/crossed)-->
                                 <%  if (itemsCheckedMap.get(dayOfWeek).includes('' + i)){ %>
-                                    <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>")' checked>
-                                    <p name="notdisplay" class="paragraph">
+                                    <!--if it is done, it should be marked as checked and when you click on it again it should uncheck with onMyClick-->
+                                    <input type="checkbox" id="remember" onclick='uncheckItem("<%=i%>")' checked>
+                                    <p class="paragraph">
                                         <%= nli[i].itm %>
                                     </p>
                                     <% }else{ %>
-
-                                        <div class="leftText"><input type="checkbox" id="remember" onclick='onYourClick("<%=i%>")'></div>
+                                         <!--if it is not done, the checkbox should not be selected and when you click, onYourClick method is called which sends data to the back-end
+                                        and tells it that this item is done-->
+                                        <div class="leftText"><input type="checkbox" id="remember" onclick='checkItem("<%=i%>")'></div>
                                         <div class="centerText">
+                                            <!--when click on this paragraph p its should hide, and on its place the input with name edit should be shown-->
                                             <p name="display" class="paragraph">
                                                 <%= nli[i].itm %>
                                             </p>
                                         </div>
+                                        <!--this input allows unchecked to-do item to be edited-->
                                         <input class="centerText editText" onchange='editInput(" <%=i%>", this.value)' name="edit" type="text" value="<%= nli[i].itm %>" style="display: none" autocomplete="off">
+                                        <!--the delete-icon (x-image) is used to delete item when being clicked on-->
                                         <div class="rightText"><img class="delete-icon" onclick='deleteItem("<%=i%>")' src="images/delete-icon.svg " height="20 " width="20 " /></div>
                                         <%} %>
                                     </span>
                             <% } %>
                                 <% } %>
-
+                                    <!--newItem input text field is used to insert a new item in to-do list-->
                                     <input class="inputText" type="text" name="newItem" placeholder="A notion, idea, or plan" autocomplete="off" autofocus>
+                                    <!--represented by an hmtl icon(an arrow) which clicked submits the item-->
                                     <button class="button" type="submit" id="submit" value="<%=listTitle %>">&#10548;</button>
             </form>
         </div>

@@ -7,6 +7,9 @@ module.exports.getDate = function() {
     return dateFormat(today, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 };
 
+/* depending on the type which can be next or previous, 
+   getDayByType returns back next or previous day of the week */
+
 module.exports.getDayByType = function(currentDay, type) {
     let result = 0;
     if (type === "next") {
@@ -25,6 +28,8 @@ module.exports.getDayByType = function(currentDay, type) {
     return result;
 };
 
+    /* postTitleDays displays the titles of the days in certain format */
+
 module.exports.postTitleDays = function(currentDayOfWeek, newDayOfWeek) {
     let difference = newDayOfWeek - currentDayOfWeek;
     const today = new Date();
@@ -36,6 +41,9 @@ module.exports.postTitleDays = function(currentDayOfWeek, newDayOfWeek) {
     }
     return diffTomm;
 };
+
+/* calculates the difference between two days and used as helping function
+when checking if we are in the current week */
 
 module.exports.getDateDiff = function(currentDate, lastAccessedDate) {
     let diffInTime = currentDate.getTime() - lastAccessedDate.getTime();

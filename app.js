@@ -44,6 +44,9 @@ let itemsCheckedMap = new Map();
 let lastAccessedDay = -1;
 let lastAccessedDate;
 
+/* each day of the week has its own array of items.
+ itemsMap stores unchecked items, itemsCheckedMap stores already done (checked) items. 
+ */
 function reloadItems() {
     day = date.getDate();
     itemsMap = new Map();
@@ -71,6 +74,8 @@ app.get("/", checkAuthenticated, (req, res) => {
 app.get("/index", checkAuthenticated, function(req, res) {
     currentDayOfWeek = new Date().getDay();
     let currentDate = new Date();
+
+    // makes sure the span of days is in the range of Sunday to Saturday
     if (lastAccessedDay === -1 ||
         (lastAccessedDay > currentDayOfWeek) ||
         (date.getDateDiff(currentDate, lastAccessedDate) >= 7)) {
@@ -87,6 +92,9 @@ app.get("/index", checkAuthenticated, function(req, res) {
     });
 });
 
+/* add new item (itemOption) to itemsMap. itemOption is a class which 
+contains item which is send from the client and is a text input. chk:0 means item is unchecked */
+
 app.post("/index", function(req, res) {
     let item = req.body.newItem;
     let itemOption = {
@@ -101,7 +109,9 @@ app.post("/index", function(req, res) {
     res.redirect("/index");
 });
 
-app.post("/onMyClick", function(req, res) {
+// removes an item from itemsCheckedMap
+
+app.post("/uncheckItem", function(req, res) {
     let itemNumber = req.body.itemNumber;
     const index = itemsCheckedMap.get(dayOfWeek).indexOf(itemNumber);
     if (index > -1) {
@@ -110,11 +120,15 @@ app.post("/onMyClick", function(req, res) {
     res.redirect("/index");
 });
 
-app.post("/onYourClick", function(req, res) {
+// adds item to itemsCheckedMap
+
+app.post("/checkItem", function(req, res) {
     let itemNumber = req.body.itemNumber;
     itemsCheckedMap.get(dayOfWeek).push(itemNumber);
     res.redirect("/index");
 });
+
+// changes the value of the item in itemsMap (edits only if its unchecked)
 
 app.post("/editInput", function(req, res) {
     const itemNumber = req.body.itemNumber;
@@ -124,12 +138,17 @@ app.post("/editInput", function(req, res) {
     res.redirect("/index");
 });
 
+// removes the item in itemsMap (deletes only if its unchecked)
+
 app.post("/deleteItem", function(req, res) {
     const itemNumber = req.body.itemNumber;
     const index = Number(itemNumber);
     itemsMap.get(dayOfWeek).splice(index, 1);
     res.redirect("/index");
 });
+
+/* is called when curly bracket is clicked or arrow key is pressed 
+  and changes the title of the week */
 
 app.post("/posts/:day/:type", function(req, res) {
     let currentDay = req.params.day;
@@ -143,15 +162,22 @@ app.get("/login", checkNotAuthenticated, (req, res) => {
   res.render("login.ejs")
 })
 
+/* when user tries to login, an authetication process is performed,
+and if he/she is or not registered will be redirected either to index or login page */
+
 app.post("/login", checkNotAuthenticated, passport.authenticate("local", {
   successRedirect: "/index",
   failureRedirect: "/login",
-  failureFlash: true
+  failureFlash: true  // flash messages are used with express-flash in order to display status information to the user.
 }))
 
 app.get("/register", checkNotAuthenticated, (req, res) => {
   res.render("register.ejs")
 })
+
+/* when user tries to register, we check for valid password and valid email.
+if everything is ok, we hash the password with bcrypt and depending on their input, 
+we redirect him/her either to register or login page */
 
 app.post("/register", checkNotAuthenticated, async (req, res) => {
   if(!date.isValidPassword(req.body.password, req.body.name)) {
