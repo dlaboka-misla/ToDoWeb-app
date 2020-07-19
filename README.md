@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # to-do web-app develop branch
 Responsive Web Application for one user.
  
@@ -5,6 +6,14 @@ The user can:
 
  **Register with a username, email and password**. 
 note: For user authentication, i use [passport dependency](http://www.passportjs.org/docs/) When registering, i check for valid email and valid password. The password is encrypted (using [bcrypt](https://medium.com/@mridu.sh92/a-quick-guide-for-authentication-using-bcrypt-on-express-nodejs-1d8791bb418f) and express-session requires a secret key, therefore not deployable for testing on docker or heroku atm. 
+=======
+# to-do web app
+Responsive Web Application for one user. The user can make to-do List for the current week, Sunday till Saturday. 
+The page realoads each week, i.e. the tasks remain and are visible only for the current week.
+Cannot edit the task, only check/cross if completed. 
+To navigate through the days, click on the curly brackets or left-right arrow keys. 
+To enter text, click on the arrow or press enter.
+>>>>>>> origin
 
 **Login** to their profile.
 
@@ -13,11 +22,19 @@ The page reloads each week, i.e. the tasks remain and are visible only for the c
 
 **Edit** the task with a click on the paragraph. To input edited text, click on the arrow or press enter.
 
+<<<<<<< HEAD
 **Delete** the task by one click on the x image.
+=======
+docker run -p 5000:5000 -e "TZ=Europe/Amsterdam" -d dalexandra/todolist:latest
+>>>>>>> origin
 
 **if checked/crossed can not delete or edit the task.**
 
 To navigate through the days, click on the curly brackets or left-right arrow keys. 
 To enter text, click on the arrow or press enter.
 
+<<<<<<< HEAD
 Written in JavaScript using node.js on server side together with several dependencies.
+=======
+open browser and type: localhost:5000
+>>>>>>> origin
