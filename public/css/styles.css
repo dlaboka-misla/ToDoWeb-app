@@ -13,7 +13,7 @@
     .usrname {
         position: fixed;
         right: 180px;
-        top: 14px;
+        top: 8px;
         font-size: x-large;
     }
     .item {
@@ -275,4 +275,17 @@ input[type="text"]:focus {
 ::placeholder {
     color: grey;
     opacity: 1;
+}
+
+.leftText {
+    float: left;
+}
+
+.rightText {
+    float: right;
+}
+
+.centerText {
+    float: left;
+    width: 80%;
 }

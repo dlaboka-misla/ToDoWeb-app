@@ -29,21 +29,24 @@
                 <%  var nli = newListItems.get(dayOfWeek); %>
                     <%  if (nli != null) { %>
                         <%  for(let i = 0; i < nli.length; i++){ %>
-                            <div class="item">
+                            <span class="item">
                                 <%  if (itemsCheckedMap.get(dayOfWeek).includes('' + i)){ %>
-                                    <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>")' checked class="chk-box">
+                                    <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>")' checked>
                                     <p name="notdisplay" class="paragraph">
                                         <%= nli[i].itm %>
                                     </p>
                                     <% }else{ %>
 
-                                        <input type="checkbox" id="remember" onclick='onYourClick("<%=i%>")' class="chk-box">
-                                        <p name="display" class="paragraph" ondblclick='deleteItem("<%=i%>")'>
-                                            <%= nli[i].itm %><img class="delete-icon" onclick='deleteItem("<%=i%>")' style="display: none " src="images/delete-icon.svg " height="20 " width="20 " />
-                                        </p>
-                                        <input class="editText" onchange='editInput(" <%=i%>", this.value)' name="edit" type="text" value="<%= nli[i].itm %>" style="display: none" autocomplete="off">
+                                        <div class="leftText"><input type="checkbox" id="remember" onclick='onYourClick("<%=i%>")'></div>
+                                        <div class="centerText">
+                                            <p name="display" class="paragraph">
+                                                <%= nli[i].itm %>
+                                            </p>
+                                        </div>
+                                        <input class="centerText editText" onchange='editInput(" <%=i%>", this.value)' name="edit" type="text" value="<%= nli[i].itm %>" style="display: none" autocomplete="off">
+                                        <div class="rightText"><img class="delete-icon" onclick='deleteItem("<%=i%>")' src="images/delete-icon.svg " height="20 " width="20 " /></div>
                                         <%} %>
-                            </div>
+                                    </span>
                             <% } %>
                                 <% } %>
 

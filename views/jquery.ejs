@@ -2,14 +2,8 @@
 <script>
     $(document).ready(function() {
         $('p[name=display]').click(function() {
-            $(this).hide();
-            $('input[name=edit]', $(this).closest('div')).show();
-        })
-        $('p[name=display]').mouseover(function() {
-            $('img', $(this).closest('p')).show();
-        })
-        $('p[name=display]').mouseleave(function() {
-            $('img', $(this).closest('p')).hide();
+            $(this).closest('div').hide();
+            $('input[name=edit]', $(this).closest('span')).show();
         })
     });
 
