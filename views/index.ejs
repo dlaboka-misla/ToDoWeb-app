@@ -6,7 +6,7 @@
                 <%= name %>
             </div>
             <div class="logout">
-                <button type="submit" class="btn btn-dark btn-lg">Log Out</button>
+                <button type="submit" class="btn btn-dark">Log Out</button>
             </div>
         </form>
 
@@ -15,9 +15,9 @@
                 <div>
                     <div class="left"><button id="backward" onclick='getPreviousDay("<%=dayOfWeek%>")'>&#10100</button></div>
                     <div class="center">
-                        <h1>
+                        <p class="title">
                             <%= listTitle %>
-                        </h1>
+                        </p>
                     </div>
                     <div class="right"><button id="forward" onclick='getNextDay("<%=dayOfWeek%>")'>&#10101</button></div>
                 </div>
@@ -31,13 +31,14 @@
                         <%  for(let i = 0; i < nli.length; i++){ %>
                             <div class="item">
                                 <%  if (itemsCheckedMap.get(dayOfWeek).includes('' + i)){ %>
-                                    <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>")' checked>
-                                    <p name="notdisplay">
+                                    <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>")' checked class="chk-box">
+                                    <p name="notdisplay" class="paragraph">
                                         <%= nli[i].itm %>
                                     </p>
                                     <% }else{ %>
-                                        <input type="checkbox" id="remember" onclick='onYourClick("<%=i%>")'>
-                                        <p name="display">
+
+                                        <input type="checkbox" id="remember" onclick='onYourClick("<%=i%>")' class="chk-box">
+                                        <p name="display" class="paragraph" ondblclick='deleteItem("<%=i%>")'>
                                             <%= nli[i].itm %><img class="delete-icon" onclick='deleteItem("<%=i%>")' style="display: none " src="images/delete-icon.svg " height="20 " width="20 " />
                                         </p>
                                         <input class="editText" onchange='editInput(" <%=i%>", this.value)' name="edit" type="text" value="<%= nli[i].itm %>" style="display: none" autocomplete="off">

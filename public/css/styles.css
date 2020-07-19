@@ -1,3 +1,170 @@
+@media screen and (min-width: 1025px) {
+    .title {
+        color: #3f3d3d;
+        margin: 20px 0 0 0;
+        font-size: 31px;
+    }
+    .box {
+        max-width: 60%;
+        margin: 40px auto;
+        border-radius: 5px;
+        word-wrap: break-word;
+    }
+    .usrname {
+        position: fixed;
+        right: 180px;
+        top: 14px;
+        font-size: x-large;
+    }
+    .item {
+        min-height: 60px;
+        display: flex;
+        padding: 2px;
+        margin-left: 40px;
+    }
+    .left {
+        float: left;
+        width: 20%;
+        padding-left: 50px;
+    }
+    .right {
+        float: right;
+        width: 20%;
+        padding-right: 50px;
+    }
+    .center {
+        float: left;
+        width: 60%;
+    }
+    .formitem {
+        text-align: auto;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+    #forward,
+    #backward {
+        background-color: transparent;
+        color: #3f3d3d;
+        font-size: 50px;
+        padding: 1px;
+        border-width: 0;
+    }
+    .button {
+        min-height: 40px;
+        margin-right: 40px;
+        width: 50px;
+        background-color: transparent;
+        font-size: 30px;
+        border-width: 0;
+    }
+    #submit {
+        float: right;
+        font-size: 50px;
+    }
+    .inputText {
+        text-align: center;
+        height: 60px;
+        top: 10px;
+        border: none;
+        font-size: 20px;
+        width: 85%;
+        margin-top: 10px;
+        font-family: monospace;
+    }
+    .paragraph {
+        font-size: 20px;
+        max-width: 80%;
+        margin-left: 20px;
+    }
+    .delete-icon {
+        margin-left: 20px;
+        margin-bottom: 1px;
+    }
+}
+
+@media screen and (min-width: 200px) and (max-width: 1024px) {
+    .box {
+        max-width: 100%;
+        margin: 0;
+        word-wrap: break-word;
+    }
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+    .formitem {
+        text-align: auto;
+    }
+    .title {
+        margin-top: 15px;
+        padding-left: 2px;
+        color: #3f3d3d;
+        font-size: 20px;
+    }
+    .item {
+        min-height: 40px;
+        display: flex;
+        margin: auto;
+        margin-left: 20px;
+    }
+    #forward,
+    #backward {
+        background-color: transparent;
+        color: #3f3d3d;
+        font-size: 40px;
+        border-width: 0;
+    }
+    .center {
+        float: left;
+        width: 80%;
+    }
+    .right {
+        float: right;
+        width: 10%;
+    }
+    .left {
+        float: left;
+        width: 10%;
+    }
+    .body {
+        margin-bottom: 10px;
+    }
+    .button {
+        min-height: 20px;
+        width: 30px;
+        background-color: transparent;
+        font-size: 20px;
+        border-width: 0;
+    }
+    .usrname {
+        position: fixed;
+        right: 150px;
+        top: 10px;
+        font-size: larger;
+    }
+    #submit {
+        float: right;
+        margin-right: 25px;
+        font-size: 40px;
+    }
+    .inputText {
+        text-align: center;
+        height: 60px;
+        top: 10px;
+        border: none;
+        font-size: 20px;
+        width: 80%;
+        font-family: monospace;
+    }
+    .paragraph {
+        margin: 0 0 15px 20px;
+        font-size: 20px;
+        max-width: 80%;
+    }
+    .delete-icon {
+        margin-bottom: 1px;
+    }
+}
+
 a {
     color: black;
     text-decoration: underline;
@@ -25,20 +192,6 @@ body {
     user-select: none;
 }
 
-.button {
-    min-height: 40px;
-    margin-right: 40px;
-    width: 50px;
-    background-color: transparent;
-    font-size: 30px;
-    border-width: 0;
-}
-
-.center {
-    float: left;
-    width: 60%;
-}
-
 .clear {
     clear: both;
     margin-bottom: 20px;
@@ -54,21 +207,6 @@ body {
     border: none;
     width: 85%;
     font-family: monospace;
-}
-
-.formitem {
-    text-align: auto;
-    margin-left: 100px;
-    margin-right: 100px;
-}
-
-#forward,
-#backward {
-    background-color: transparent;
-    color: #3f3d3d;
-    font-size: 50px;
-    padding: 1px;
-    border-width: 0;
 }
 
 .form-signin {
@@ -101,10 +239,17 @@ body {
     margin-bottom: 10px;
 }
 
-h1 {
-    color: #3f3d3d;
-    margin: 20px 0 0 0;
-    font-size: 31px;
+input:checked+p {
+    text-decoration: line-through;
+    text-decoration-color: #888888
+}
+
+input[type="checkbox"] {
+    margin: 10px;
+}
+
+input[type="text"]:focus {
+    outline: none;
 }
 
 #heading {
@@ -112,50 +257,8 @@ h1 {
     text-align: center;
 }
 
-.item {
-    min-height: 60px;
-    display: flex;
-    padding: 2px;
-    margin-left: 40px;
-}
-
 .item:last-child {
     border-bottom: 0;
-}
-
-input:checked+p {
-    text-decoration: line-through;
-    text-decoration-color: #888888
-}
-
-input[type="checkbox"] {
-    margin: 12px;
-}
-
-.inputText {
-    text-align: center;
-    height: 60px;
-    top: 10px;
-    border: none;
-    font-size: 20px;
-    width: 85%;
-    margin-top: 10px;
-    font-family: monospace;
-}
-
-input[type="text"]:focus {
-    outline: none;
-}
-
-.delete-icon {
-    margin-left: 20px;
-    margin-bottom: 1px;
-}
-
-.left {
-    float: left;
-    width: 20%;
-    padding-left: 50px;
 }
 
 .logout {
@@ -164,57 +267,12 @@ input[type="text"]:focus {
     top: 5px;
 }
 
-@media (min-width: 1025px) {
-    .box {
-        max-width: 60%;
-        margin: 40px auto;
-        border-radius: 5px;
-        word-wrap: break-word;
-    }
-}
-
-@media (min-width: 200px) and (max-width: 1024px) {
-    .box {
-        max-width: 80%;
-        margin: auto;
-        border-radius: 5px;
-        word-wrap: break-word;
-    }
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-}
-
 .message {
     font-size: 15px;
     margin-top: 15px;
 }
 
-p {
-    margin: 3px;
-    font-size: 20px;
-    max-width: 90%;
-}
-
 ::placeholder {
     color: grey;
     opacity: 1;
-}
-
-.right {
-    float: right;
-    width: 20%;
-    padding-right: 50px;
-}
-
-#submit {
-    float: right;
-    font-size: 50px;
-}
-
-.usrname {
-    position: fixed;
-    right: 180px;
-    top: 14px;
-    font-size: x-large;
 }
