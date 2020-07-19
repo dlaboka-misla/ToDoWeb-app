@@ -16,23 +16,32 @@
     <div class="clear"></div>
     <div class="box">
         <form class="formitem" action="/" method="post">
+            <!--newListItems is a map of days and to-do items for the displayed day of the week (itemsMap). nli is array of items
+           for the displayed day of week. -->
             <%  var nli = newListItems.get(dayOfWeek); %>
                 <%  if (nli != null) { %>
+                    <!-- iterate over the newListItems for the displayed day of the week-->
                     <%  for(let i = 0; i < nli.length; i++){ %>
                         <div class="item">
+                            <!-- check if for the displayed day of the week, the to-do item is already done (checked/crossed)-->
                             <%  if (itemsCheckedMap.get(dayOfWeek).includes('' + i)){ %>
+                                <!--if it is done, it should be marked as checked and when you click on it again it should uncheck with onMyClick-->
                                 <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>")' checked>
                                 <% }else{ %>
+                                    <!--if it is not done, the checkbox should not be selected and when you click, onYourClick method is called which sends data to the back-end
+                                       and tells it that this item is done-->
                                     <input type="checkbox" id="remember" onclick='onYourClick("<%=i%>")'>
                                     <%} %>
+                                        <!--display the item text-->
                                         <p>
                                             <%= nli[i].itm %>
                                         </p>
                         </div>
                         <% } %>
                             <% } %>
-
+                                <!--newItem input text field is used to insert a new item in to-do list-->
                                 <input type="text" name="newItem" placeholder="A notion, idea, or plan" autocomplete="off" autofocus>
+                                <!--represented by an hmtl icon(an arrow) which clicked submits the item-->
                                 <button class="button" type="submit" id="submit" value="<%=listTitle %>">&#10548;</button>
         </form>
     </div>

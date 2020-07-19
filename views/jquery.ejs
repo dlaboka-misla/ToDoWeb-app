@@ -1,5 +1,6 @@
 <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script>
+    // an ajax request to the server to uncheck the item if its checked
     function onMyClick(i) {
         $.ajax({
             url: '/onMyClick',
@@ -13,6 +14,7 @@
         });
     };
 
+    // an ajax request to the server to check the item if its unchecked
     function onYourClick(i) {
         $.ajax({
             url: '/onYourClick',
@@ -26,6 +28,7 @@
         });
     };
 
+    // this function is called when user clicks on the right curly bracket
     function getNextDay(dayOfWeek) {
         $.ajax({
             url: '/posts/' + dayOfWeek + '/next',
@@ -36,6 +39,7 @@
         });
     };
 
+    // is called when user clicks on the left curly bracket
     function getPreviousDay(dayOfWeek) {
         $.ajax({
             url: '/posts/' + dayOfWeek + '/previous',
@@ -46,6 +50,7 @@
         });
     };
 
+    // is called when user pressed on the right or left arrow key of the keyboard
     function getAnotherDay(dayOfWeek, event) {
         let keycode = event.keyCode;
         let type = '';

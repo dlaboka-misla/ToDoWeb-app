@@ -18,6 +18,10 @@ let itemsCheckedMap = new Map();
 let lastAccessedDay = -1;
 let lastAccessedDate;
 
+/* each day of the week has its own array of items.
+ itemsMap stores unchecked items, itemsCheckedMap stores already done (checked) items.
+*/
+
 function reloadItems() {
     day = date.getDate();
     itemsMap = new Map();
@@ -41,6 +45,8 @@ function reloadItems() {
 app.get("/", function(req, res) {
     currentDayOfWeek = new Date().getDay();
     let currentDate = new Date();
+
+    // makes sure the span of days is in the range of Sunday to Saturday
     if (lastAccessedDay === -1 ||
         (lastAccessedDay > currentDayOfWeek) ||
         (date.getDateDiff(currentDate, lastAccessedDate) >= 7)) {
@@ -56,6 +62,10 @@ app.get("/", function(req, res) {
     });
 });
 
+/* add new item (itemOption) to itemsMap. itemOption is a class which
+contains item send from the user and is a text input.
+chk:0 means item is unchecked */
+
 app.post("/", function(req, res) {
     let item = req.body.newItem;
     let itemOption = {
@@ -70,6 +80,7 @@ app.post("/", function(req, res) {
     res.redirect("/");
 });
 
+// removes an item from itemsCheckedMap
 app.post("/onMyClick", function(req, res) {
     let itemNumber = req.body.itemNumber;
     const index = itemsCheckedMap.get(dayOfWeek).indexOf(itemNumber);
@@ -79,11 +90,15 @@ app.post("/onMyClick", function(req, res) {
     res.redirect("/");
 });
 
+// adds item to itemsCheckedMap
 app.post("/onYourClick", function(req, res) {
     let itemNumber = req.body.itemNumber;
     itemsCheckedMap.get(dayOfWeek).push(itemNumber);
     res.redirect("/");
 });
+
+/* the function bellow is called when curly bracket is clicked or arrow key is pressed
+  and changes the title of the week */
 
 app.post("/posts/:day/:type", function(req, res) {
     let currentDay = req.params.day;
