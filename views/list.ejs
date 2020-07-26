@@ -24,13 +24,13 @@
                     <%  for(let i = 0; i < nli.length; i++){ %>
                         <div class="item">
                             <!-- check if for the displayed day of the week, the to-do item is already done (checked/crossed)-->
-                            <%  if (itemsCheckedMap.get(dayOfWeek).includes('' + i)){ %>
+                            <%  if ( nli[i].chk === 1) { %>
                                 <!--if it is done, it should be marked as checked and when you click on it again it should uncheck with onMyClick-->
-                                <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>")' checked>
+                                <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>", "<%=nli[i].id%>")' checked>
                                 <% }else{ %>
                                     <!--if it is not done, the checkbox should not be selected and when you click, onYourClick method is called which sends data to the back-end
                                        and tells it that this item is done-->
-                                    <input type="checkbox" id="remember" onclick='onYourClick("<%=i%>")'>
+                                    <input type="checkbox" id="remember" onclick='onYourClick("<%=i%>", "<%=nli[i].id%>")'>
                                     <%} %>
                                         <!--display the item text-->
                                         <p>
@@ -46,7 +46,6 @@
         </form>
     </div>
 
-    <%- include("jquery") -%>
-        </body>
+    </body>
 
-        </html>
+    </html>

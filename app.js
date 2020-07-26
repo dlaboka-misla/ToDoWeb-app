@@ -3,12 +3,24 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const mongoose = require("mongoose");
 const date = require(__dirname + "/date.js");
 const app = express();
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true, useUnifiedTopology: true})
+
+const itemsSchema = {
+    name: String,
+    createdOn: Date,
+    day: Number,
+    chk: Number
+};
+
+const Item = mongoose.model("Item", itemsSchema);
 
 let day = date.getDate();
 let dayOfWeek = new Date().getDay();
@@ -18,12 +30,17 @@ let itemsCheckedMap = new Map();
 let lastAccessedDay = -1;
 let lastAccessedDate;
 
+// reloadItems is called when the app starts and when the week changes
+function reloadItems() {
+    day = date.getDate();
+    resetItems();
+};
+
 /* each day of the week has its own array of items.
  itemsMap stores unchecked items, itemsCheckedMap stores already done (checked) items.
 */
 
-function reloadItems() {
-    day = date.getDate();
+function resetItems() {
     itemsMap = new Map();
     itemsMap.set(0, []);
     itemsMap.set(1, []);
@@ -40,7 +57,17 @@ function reloadItems() {
     itemsCheckedMap.set(4, []);
     itemsCheckedMap.set(5, []);
     itemsCheckedMap.set(6, []);
-};
+}
+
+function deleteFromDB() {
+   // db.gpsdatas.find({"createdAt" : { $gte : new ISODate("2012-01-12T20:15:31Z") }});
+   // { $gte: new Date(dateVar).toISOString() }
+    const lastSunday = date.getDateOfLastSunday(new Date());
+    console.log("DateOfLastSunday = " + lastSunday);
+    Item.deleteMany({"createdOn": { $lt : new Date(lastSunday.toISOString().slice(0,10)) } }, function(err) {
+         if (err) return handleError(err);
+    })
+}
 
 app.get("/", function(req, res) {
     currentDayOfWeek = new Date().getDay();
@@ -51,14 +78,29 @@ app.get("/", function(req, res) {
         (lastAccessedDay > currentDayOfWeek) ||
         (date.getDateDiff(currentDate, lastAccessedDate) >= 7)) {
         reloadItems();
+        deleteFromDB();
     }
     lastAccessedDay = currentDayOfWeek;
     lastAccessedDate = currentDate;
-    res.render("list", {
+    resetItems();
+    Item.find({}, function(err, foundItems) {
+        foundItems.forEach(foundItem => {
+            if (foundItem.day === dayOfWeek) {
+            let itemOption = {
+            itm: foundItem.name,
+            id: foundItem._id,
+            day: foundItem.day,
+            chk: foundItem.chk
+        };
+        itemsMap.get(dayOfWeek).push(itemOption);
+        }
+    })
+        res.render("list", {
         listTitle: day,
         dayOfWeek: dayOfWeek,
         newListItems: itemsMap,
         itemsCheckedMap: itemsCheckedMap,
+    });
     });
 });
 
@@ -70,11 +112,19 @@ app.post("/", function(req, res) {
     let item = req.body.newItem;
     let itemOption = {
         itm: item,
+        day: dayOfWeek,
         chk: 0
     };
     if (item.length !== 0) {
         if (item.length <= 300) {
             itemsMap.get(dayOfWeek).push(itemOption);
+            const todoItem = new Item ({
+                name: itemOption.itm,
+                createdOn: new Date(new Date().toISOString().slice(0,10)),
+                day: itemOption.day,
+                chk: itemOption.chk
+            });
+            todoItem.save();
         }
     }
     res.redirect("/");
@@ -84,6 +134,12 @@ app.post("/", function(req, res) {
 app.post("/onMyClick", function(req, res) {
     let itemNumber = req.body.itemNumber;
     const index = itemsCheckedMap.get(dayOfWeek).indexOf(itemNumber);
+    let itemId = req.body.id;
+    console.log("itemId = " + itemId);
+    Item.updateOne({_id: itemId}, {$set: {chk: 0} }, function(err, res) {
+        if (err) throw err;
+         console.log("1 item unchecked");
+    })
     if (index > -1) {
         itemsCheckedMap.get(dayOfWeek).splice(index, 1);
     }
@@ -92,7 +148,13 @@ app.post("/onMyClick", function(req, res) {
 
 // adds item to itemsCheckedMap
 app.post("/onYourClick", function(req, res) {
-    let itemNumber = req.body.itemNumber;
+    let itemNumber = req.body.itemNumber; 
+    let itemId = req.body.id;
+    console.log("itemId = " + itemId);
+    Item.updateOne({_id: itemId}, {$set: {chk: 1} }, function(err, res) {
+        if (err) throw err;
+         console.log("1 item checked");
+    })
     itemsCheckedMap.get(dayOfWeek).push(itemNumber);
     res.redirect("/");
 });

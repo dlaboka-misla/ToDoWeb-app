@@ -32,10 +32,10 @@ h1 {
 }
 
 .item {
-    min-height: 60px;
+    min-height: 50px;
     display: flex;
     padding: 2px;
-    margin: 30px;
+    margin: 20px;
 }
 
 .item:last-child {

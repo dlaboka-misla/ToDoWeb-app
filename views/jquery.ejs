@@ -1,12 +1,14 @@
 <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script>
     // an ajax request to the server to uncheck the item if its checked
-    function onMyClick(i) {
+    function onMyClick(i, id) {
+        console.log("onMyClick id = " + id);
         $.ajax({
             url: '/onMyClick',
             type: 'post',
             data: {
-                itemNumber: i
+                itemNumber: i,
+                id: id
             },
             success: function(response) {
                 console.log(response);
@@ -15,12 +17,14 @@
     };
 
     // an ajax request to the server to check the item if its unchecked
-    function onYourClick(i) {
+    function onYourClick(i, id) {
+        console.log("onYourClick id = " + id);
         $.ajax({
             url: '/onYourClick',
             type: 'post',
             data: {
-                itemNumber: i
+                itemNumber: i,
+                id: id
             },
             success: function(response) {
                 console.log(response);

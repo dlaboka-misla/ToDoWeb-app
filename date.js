@@ -29,6 +29,7 @@ module.exports.getDayByType = function(currentDay, type) {
 };
 
 // postTitleDays displays the titles of the days in certain format
+
 module.exports.postTitleDays = function(currentDayOfWeek, newDayOfWeek) {
     let difference = newDayOfWeek - currentDayOfWeek;
     const today = new Date();
@@ -47,4 +48,14 @@ helping function when checking if we are in the current week */
 module.exports.getDateDiff = function(currentDate, lastAccessedDate) {
     let diffInTime = currentDate.getTime() - lastAccessedDate.getTime();
     return (diffInTime / (1000 * 3600 * 24));
+};
+
+// looking for the date when the last Sunday occured to purge the items from DB
+
+module.exports.getDateOfLastSunday = function(currentDate) {
+    if (currentDate.getDay() === 0) return currentDate
+   while (currentDate.getDay() > 0) {
+       currentDate.setDate(currentDate.getDate() - 1)
+   }
+   return currentDate;
 };
