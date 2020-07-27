@@ -1,14 +1,15 @@
-<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    // an ajax request to the server to uncheck the item if its checked
-    function onMyClick(i, id) {
-        console.log("onMyClick id = " + id);
+    /* an ajax request to the server to uncheck the item if its checked
+    or check if its unchecked, depending on user's actions */
+    function onToggle(i, id, chk) {
         $.ajax({
-            url: '/onMyClick',
+            url: '/onToggle',
             type: 'post',
             data: {
                 itemNumber: i,
-                id: id
+                id: id,
+                chk: chk
             },
             success: function(response) {
                 console.log(response);
@@ -16,26 +17,10 @@
         });
     };
 
-    // an ajax request to the server to check the item if its unchecked
-    function onYourClick(i, id) {
-        console.log("onYourClick id = " + id);
+    // an ajax request to the server when the user clicks on the right or left curly bracket
+    function changeDay(dayOfWeek, when) {
         $.ajax({
-            url: '/onYourClick',
-            type: 'post',
-            data: {
-                itemNumber: i,
-                id: id
-            },
-            success: function(response) {
-                console.log(response);
-            }
-        });
-    };
-
-    // this function is called when user clicks on the right curly bracket
-    function getNextDay(dayOfWeek) {
-        $.ajax({
-            url: '/posts/' + dayOfWeek + '/next',
+            url: '/posts/' + dayOfWeek + '/' + when,
             type: 'post',
             success: function(response) {
                 console.log(response);
@@ -43,18 +28,7 @@
         });
     };
 
-    // is called when user clicks on the left curly bracket
-    function getPreviousDay(dayOfWeek) {
-        $.ajax({
-            url: '/posts/' + dayOfWeek + '/previous',
-            type: 'post',
-            success: function(response) {
-                console.log(response);
-            }
-        });
-    };
-
-    // is called when user pressed on the right or left arrow key of the keyboard
+    // an ajax request to the server when the user presses on the right or left arrow key of the keyboard
     function getAnotherDay(dayOfWeek, event) {
         let keycode = event.keyCode;
         let type = '';

@@ -3,49 +3,48 @@
     <div class="box" id="heading">
         <form>
             <div class="day">
-                <div id="left"><button id="backward" onclick='getPreviousDay("<%=dayOfWeek%>")'>&#10100</button></div>
+                <div id="left"><button id="backward" onclick='changeDay("<%=dayOfWeek%>", "previous")'>&#10100</button></div>
                 <div id="center">
                     <h1>
                         <%= listTitle %>
                     </h1>
                 </div>
-                <div id="right"><button id="forward" onclick='getNextDay("<%=dayOfWeek%>")'>&#10101</button></div>
+                <div id="right"><button id="forward" onclick='changeDay("<%=dayOfWeek%>", "next")'>&#10101</button></div>
             </div>
         </form>
     </div>
     <div class="clear"></div>
     <div class="box">
         <form class="formitem" action="/" method="post">
-            <!--newListItems is a map of days and to-do items for the displayed day of the week (itemsMap). nli is array of items
-           for the displayed day of week. -->
-            <%  var nli = newListItems.get(dayOfWeek); %>
-                <%  if (nli != null) { %>
-                    <!-- iterate over the newListItems for the displayed day of the week-->
-                    <%  for(let i = 0; i < nli.length; i++){ %>
-                        <div class="item">
-                            <!-- check if for the displayed day of the week, the to-do item is already done (checked/crossed)-->
-                            <%  if ( nli[i].chk === 1) { %>
-                                <!--if it is done, it should be marked as checked and when you click on it again it should uncheck with onMyClick-->
-                                <input type="checkbox" id="remember" onclick='onMyClick("<%=i%>", "<%=nli[i].id%>")' checked>
-                                <% }else{ %>
-                                    <!--if it is not done, the checkbox should not be selected and when you click, onYourClick method is called which sends data to the back-end
+            <!--newListItems is an array of days and to-do items for the displayed day of the week-->
+            <%  if (newListItems != null) { %>
+                <!-- iterate over the newListItems for the displayed day of the week-->
+                <%  for(let i = 0; i < newListItems.length; i++){ %>
+                    <div class="item">
+                        <!-- check if for the displayed day of the week, the to-do item is already done (checked/crossed)-->
+                        <%  if ( newListItems[i].chk === 1) { %>
+                            <!--if it is done, it should be marked as checked and when you click on it again it should uncheck with onToggle-->
+                            <input type="checkbox" id="remember" onclick='onToggle("<%=i%>", "<%=newListItems[i]._id%>", 0)' checked>
+                            <% }else{ %>
+                                <!--if it is not done, the checkbox should not be selected and when you click, onToggle method is called which sends data to the back-end
                                        and tells it that this item is done-->
-                                    <input type="checkbox" id="remember" onclick='onYourClick("<%=i%>", "<%=nli[i].id%>")'>
-                                    <%} %>
-                                        <!--display the item text-->
-                                        <p>
-                                            <%= nli[i].itm %>
-                                        </p>
-                        </div>
+                                <input type="checkbox" id="remember" onclick='onToggle("<%=i%>", "<%=newListItems[i]._id%>", 1)'>
+                                <%} %>
+                                    <!--display the item text-->
+                                    <p>
+                                        <%= newListItems[i].name %>
+                                    </p>
+                    </div>
+                    <% } %>
                         <% } %>
-                            <% } %>
-                                <!--newItem input text field is used to insert a new item in to-do list-->
-                                <input type="text" name="newItem" placeholder="A notion, idea, or plan" autocomplete="off" autofocus>
-                                <!--represented by an hmtl icon(an arrow) which clicked submits the item-->
-                                <button class="button" type="submit" id="submit" value="<%=listTitle %>">&#10548;</button>
+                            <!--newItem input text field is used to insert a new item in to-do list-->
+                            <input type="text" name="newItem" placeholder="A notion, idea, or plan" autocomplete="off" autofocus>
+                            <!--represented by an hmtl icon(an arrow) which clicked submits the item-->
+                            <button class="button" type="submit" id="submit" value="<%=listTitle %>">&#10548;</button>
         </form>
     </div>
+    </div>
+    <%- include("jquery") -%>
+        </body>
 
-    </body>
-
-    </html>
+        </html>
