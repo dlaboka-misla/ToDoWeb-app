@@ -9,7 +9,6 @@ module.exports.getDate = function() {
 
 /* depending on the type which can be next or previous,
    getDayByType returns back next or previous day of the week */
-
 module.exports.getDayByType = function(currentDay, type) {
     let result = 0;
     if (type === "next") {
@@ -41,10 +40,18 @@ module.exports.postTitleDays = function(currentDayOfWeek, newDayOfWeek) {
     return diffTomm;
 };
 
-/* getDateDif calculates the difference between two days and used as 
+/* getDateDif calculates the difference between two days and is used as
 helping function when checking if we are in the current week */
-
 module.exports.getDateDiff = function(currentDate, lastAccessedDate) {
     let diffInTime = currentDate.getTime() - lastAccessedDate.getTime();
     return (diffInTime / (1000 * 3600 * 24));
+};
+
+// accessing the date when the last Sunday occured in order to delete the items from DB
+module.exports.getDateOfLastSunday = function(currentDate) {
+    if (currentDate.getDay() === 0) return currentDate
+   while (currentDate.getDay() > 0) {
+       currentDate.setDate(currentDate.getDate() - 1)
+   }
+   return currentDate;
 };

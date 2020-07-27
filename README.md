@@ -1,18 +1,48 @@
 # to-do web app
 Responsive Web Application for one user. The user can make to-do List for the current week, Sunday till Saturday.
+
 The page reloads each week, i.e. the tasks remain and are visible only for the current week.
+
+The dates follow the current time.
+
 Cannot edit the task, only check/cross if completed.
+
 To navigate through the days, click on the curly brackets or left-right arrow keys.
+
 To enter text, click on the arrow or press enter.
 
-Written in JavaScript using node.js on server side together with several dependencies like express, body-parser, dateformat and ejs template.
+Written in JavaScript using **Node.js** on server side and **MongoDB** as database, together with several dependencies like express, body-parser, dateformat, ejs template and mongoose.
 
-To test and use, assuming you've already installed docker, run these commands in the console:
+To test and use, assuming you've already installed **docker** and **docker-compose**, run these commands in the console:
 
-docker pull dalexandra/todolist:latest
+If you want to use my todolist locally on your machine, run these commands in the terminal:
 
-docker run -p 5000:5000 -e "TZ=Europe/Amsterdam" -d dalexandra/todolist:latest
+* mkdir todo
+* cd todo
+* vim docker-compose.yml and copy paste this code:
 
-for different time zones checkout https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+```
+version: "3"
+services:
+  app:
+    restart: always
+    image: dalexandra/todolist-mongodb
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+  mongo:
+    restart: always
+    image: mongo
+    ports:
+      - "27018:27017"
+```
+* save the docker-compose.yml file
+* while inside the todo folder, type: docker-compose up
+* open browser and type: localhost:8080
 
-open browser and type: localhost:5000
+The awesome thing about docker is that you don't need to have nodejs or mongoDB installed on your machine.
+
+Another awesome thing, if you add data inside the app, and restart your machine, open the browser on localhost:8080 your data remains. At least until upcoming Saturday :)
+
+Have fun planning your todos!
