@@ -13,9 +13,9 @@ To enter text, click on the arrow or press enter.
 
 Written in JavaScript using **Node.js** on server side and **MongoDB** as database, together with several dependencies like express, body-parser, dateformat, ejs template and mongoose.
 
-To test and use, assuming you've already installed **docker** and **docker-compose**, run these commands in the console:
+If you want to use my todolist locally on your machine, you need to have installed **docker** and **docker-compose**. 
 
-If you want to use my todolist locally on your machine, run these commands in the terminal:
+Then, run these commands in the terminal:
 
 * mkdir todo
 * cd todo
