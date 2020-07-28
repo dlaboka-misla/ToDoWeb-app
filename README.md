@@ -1,5 +1,5 @@
 # to-do web app
-Responsive Web Application for one user. The user can make to-do List for the current week, Sunday till Saturday.
+Responsive Web Application for one user. The user can make to-do list for the current week, Sunday till Saturday.
 
 The page reloads each week, i.e. the tasks remain and are visible only for the current week.
 
@@ -7,7 +7,7 @@ The dates follow the current time.
 
 Cannot edit the task, only check/cross if completed.
 
-To navigate through the days, click on the curly brackets or left-right arrow keys.
+To navigate through the days, click on the curly brackets or up arrow key (to go forward in the week) and down arrow key(to return to previous day).
 
 To enter text, click on the arrow or press enter.
 
