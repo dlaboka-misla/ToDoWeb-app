@@ -1,7 +1,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
     /* an ajax request to the server to uncheck the item if its checked
-    or check if its unchecked, depending on user's actions */
+                            or check if its unchecked, depending on user's actions */
     function onToggle(i, id, chk) {
         $.ajax({
             url: '/onToggle',
@@ -28,13 +28,14 @@
         });
     };
 
-    // an ajax request to the server when the user presses on the right or left arrow key of the keyboard
+    /* an ajax request to the server when the user presses on the up arrow key on the keyboard, 
+    to go forward in the days of week or down arrow key (to return to previous day) */
     function getAnotherDay(dayOfWeek, event) {
         let keycode = event.keyCode;
         let type = '';
-        if (keycode == 37) {
+        if (keycode == 40) {
             type = '/previous';
-        } else if (keycode == 39) {
+        } else if (keycode == 38) {
             type = '/next';
         }
         if (type != '') {
