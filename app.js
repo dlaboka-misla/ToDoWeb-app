@@ -51,7 +51,14 @@ app.get("/", function(req, res) {
     lastAccessedDay = currentDayOfWeek;
     lastAccessedDate = currentDate;
     itemsMap = [];
-    Item.find({day:dayOfWeek}, function(err, foundItems) {
+    const lastSunday = date.getDateOfLastSunday(new Date());
+    const nextSaturday = date.getDateOfNextSaturday(new Date());
+    Item.find({
+            day:dayOfWeek, 
+            createdOn: { 
+                $gte : new Date(lastSunday.toISOString().slice(0,10)),
+                $lte : new Date(nextSaturday.toISOString().slice(0,10)),  
+            }}, function(err, foundItems) {
         foundItems.forEach(foundItem => {
         itemsMap.push(foundItem);
     })
@@ -66,8 +73,7 @@ app.get("/", function(req, res) {
 // adds new item to itemsMap
 app.post("/", function(req, res) {
     let item = req.body.newItem;
-    if (item.length !== 0) {
-        if (item.length <= 300) {
+        if (item.length <= 300 && item.length >= 5) {
             const todoItem = new Item ({
                 name: item,
                 createdOn: new Date(new Date().toISOString().slice(0,10)),
@@ -77,7 +83,6 @@ app.post("/", function(req, res) {
             todoItem.save();
             itemsMap.push(todoItem);
         }
-    }
     res.redirect("/");
 });
 
@@ -102,6 +107,6 @@ app.post("/posts/:day/:type", function(req, res) {
     res.redirect("/");
 });
 
-app.listen(process.env.PORT || 5000, function(req, res) {
-    console.log("Server is running on port 5000.");
+app.listen(process.env.PORT || 8080, function(req, res) {
+    console.log("Server is running on port 8080.");
 });

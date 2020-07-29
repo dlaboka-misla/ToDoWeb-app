@@ -55,3 +55,11 @@ module.exports.getDateOfLastSunday = function(currentDate) {
    }
    return currentDate;
 };
+
+module.exports.getDateOfNextSaturday = function(currentDate) {
+    if (currentDate.getDay() === 6) return currentDate
+   while (currentDate.getDay() < 6) {
+       currentDate.setDate(currentDate.getDate() + 1)
+   }
+   return currentDate;
+};

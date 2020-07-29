@@ -122,3 +122,7 @@ input[type="text"]:focus {
     float: right;
     width: 20%;
 }
+
+.red {
+    color: red;
+}
