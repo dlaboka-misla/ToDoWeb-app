@@ -34,8 +34,7 @@ h1 {
 .item {
     min-height: 50px;
     display: flex;
-    padding: 2px;
-    margin: 20px;
+    margin: 25px;
 }
 
 .item:last-child {
@@ -52,7 +51,7 @@ input[type="checkbox"] {
 }
 
 p {
-    margin: 4px;
+    margin: 4px 4px 4px 15px;
     font-size: 20px;
 }
 
@@ -79,6 +78,7 @@ input[type="text"] {
     font-size: 20px;
     width: 90%;
     font-family: monospace;
+    background-color: transparent;
 }
 
 input[type="text"]:focus {
@@ -121,4 +121,8 @@ input[type="text"]:focus {
 #right {
     float: right;
     width: 20%;
+}
+
+.red {
+    color: red;
 }

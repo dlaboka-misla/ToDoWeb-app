@@ -1,5 +1,7 @@
 # to-do web app
-Responsive Web Application for one user. The user can make to-do List for the current week, Sunday till Saturday.
+Responsive Web Application for one user. 
+
+The user can make **to-do list for the current week, Sunday till Saturday inclusive** and input minimum 5 and maximum 300 characters per to-do item.
 
 The page reloads each week, i.e. the tasks remain and are visible only for the current week.
 
@@ -7,13 +9,13 @@ The dates follow the current time.
 
 Cannot edit the task, only check/cross if completed.
 
-To navigate through the days, click on the curly brackets or left-right arrow keys.
+To navigate through the days, click on the curly brackets or up arrow key (to go forward in the week) and down arrow key(to return to previous day).
 
 To enter text, click on the arrow or press enter.
 
 Written in JavaScript using **Node.js** on server side and **MongoDB** as database, together with several dependencies like express, body-parser, dateformat, ejs template and mongoose.
 
-If you want to use my todolist locally on your machine, you need to have installed **docker** and **docker-compose**. 
+If you want to use my todolist app locally on your machine, you need to have installed **docker** and **docker-compose**. 
 
 Then, run these commands in the terminal:
 
@@ -43,6 +45,4 @@ services:
 
 The awesome thing about docker is that you don't need to have nodejs or mongoDB installed on your machine.
 
-Another awesome thing, if you add data inside the app, and restart your machine, open the browser on localhost:8080 your data remains. At least until upcoming Saturday :)
-
-Have fun planning your todos!
+Another awesome thing, if you add data inside the app, and restart your machine, open the browser on localhost:8080 your data remains. At least until Saturday inclusive :)
