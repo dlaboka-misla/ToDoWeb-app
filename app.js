@@ -25,7 +25,7 @@ const Item = mongoose.model("Item", itemsSchema);
 let day = date.getDate();
 let dayOfWeek = new Date().getDay();
 let currentDayOfWeek = new Date().getDay();
-let itemsMap = [];
+let itemsMap;
 let lastAccessedDay = -1;
 let lastAccessedDate;
 

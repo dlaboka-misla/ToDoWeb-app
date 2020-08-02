@@ -29,7 +29,7 @@
                 chk: chk
             },
             success: function(response) {
-                console.log(response);
+                window.location.reload(true);
             }
         });
     };
@@ -40,7 +40,7 @@
             url: '/posts/' + dayOfWeek + '/' + when,
             type: 'post',
             success: function(response) {
-                console.log(response);
+                window.location.reload(true);
             }
         });
     };
